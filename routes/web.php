@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/user', function () {
+    return view('user.index');
+});
+
+
+Route::get('/welcome', function () {
+    return view('user.welcome');
+});
+
+Route::get('/private-videos/preview', 'VideoController@showPreviewVideo');
