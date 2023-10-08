@@ -13,8 +13,13 @@
             <!-- 1 -->
 
             <div class="sm:col-span-1 flex border rounded bg-gray-300 items-center p-2 ">
-                <input type="text" placeholder="พิมพ์หรือเลือกจังหวัด,เขต"
-                    class="bg-gray-300 w-full focus:outline-none text-gray-700" />
+                <select type="text" placeholder="พิมพ์หรือเลือกจังหวัด,เขต"
+                    class="bg-gray-300 w-full focus:outline-none text-gray-700">
+                    <option value="">กรุณาเลือกจังหวัด</option>
+                    @foreach($provinces as $item)
+                    <option value="{{ $item->province }}">{{ $item->province }}</option>
+                    @endforeach
+                </select>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -54,8 +59,13 @@
             <div></div>
             <!-- 3 -->
             <div class="sm:col-span-1 flex border rounded bg-gray-300 items-center p-2 ">
-                <input type="text" placeholder="พิมพ์หรือเลือกจังหวัด,เขต"
-                    class="bg-gray-300 w-full focus:outline-none text-gray-700" />
+                <select type="text" placeholder="พิมพ์หรือเลือกจังหวัด,เขต"
+                    class="bg-gray-300 w-full focus:outline-none text-gray-700">
+                    <option value="">กรุณาเลือกเขต/อำเภอ</option>
+                    @foreach($amphoes as $item)
+                    <option value="{{ $item->amphoe }}">{{ $item->amphoe }}</option>
+                    @endforeach
+                    </select>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -69,30 +79,31 @@
 
 
                 <!-- 4 -->
-                <select
+                <select id="input_province"
                     class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Choose a country</option>
-                    <option>United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
+                    <option value="">กรุณาเลือกจังหวัด</option>
+                    @foreach($provinces as $item)
+                    <option value="{{ $item->province }}">{{ $item->province }}</option>
+                    @endforeach
+
+                </select>
+
+                <!-- 5 -->
+                <select id="input_amphoe"
+                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">กรุณาเลือกเขต/อำเภอ</option>
+                    @foreach($amphoes as $item)
+                    <option value="{{ $item->amphoe }}">{{ $item->amphoe }}</option>
+                    @endforeach
 
                 </select>
                 <!-- 5 -->
-                <select
+                <select id="input_tambon"
                     class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Choose a country</option>
-                    <option>United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
-
-                </select>
-                <!-- 5 -->
-                <select
-                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Choose a country</option>
-                    <option>United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
+                    <option value="">กรุณาเลือกแขวง/ตำบล</option>
+                    @foreach($tambons as $item)
+                    <option value="{{ $item->tambon }}">{{ $item->tambon }}</option>
+                    @endforeach
 
                 </select>
             </div>
@@ -107,19 +118,105 @@
     </div>
 
     <div class="grid md:grid-cols-4 gap-6 justify-center p-5">
-    @include('layouts.itemHouse')
-    @include('layouts.itemHouse')
-    @include('layouts.itemHouse')
-    @include('layouts.itemHouse')
-    @include('layouts.itemHouse')
-    @include('layouts.itemHouse')
-    @include('layouts.itemHouse')
-    @include('layouts.itemHouse')
-    @include('layouts.itemHouse')
-    @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
+        @include('layouts.itemHouse')
     </div>
     <div class="flex justify-center">
         @include('layouts.pagination')
     </div>
 </div>
+
+
+
+
+
+
+<script>   
+    function showAmphoes() {
+        let input_province = document.querySelector("#input_province");
+        let url = "{{ url('/api/amphoes') }}?province=" + input_province.value;
+        console.log(url);
+        // if(input_province.value == "") return;
+        fetch(url)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                let input_amphoe = document.querySelector("#input_amphoe");
+                input_amphoe.innerHTML = '<option value="">กรุณาเลือกเขต/อำเภอ</option>';
+                for (let item of result) {
+                    let option = document.createElement("option");
+                    option.text = item.amphoe;
+                    option.value = item.amphoe;
+                    input_amphoe.appendChild(option);
+                }
+                //QUERY AMPHOES
+                showTambons();
+            });
+    }
+function showTambons() {
+        let input_province = document.querySelector("#input_province");
+        let input_amphoe = document.querySelector("#input_amphoe");
+        let url = "{{ url('/api/tambons') }}?province=" + input_province.value + "&amphoe=" + input_amphoe.value;
+        console.log(url);        
+        // if(input_province.value == "") return;        
+        // if(input_amphoe.value == "") return;
+        fetch(url)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                let input_tambon = document.querySelector("#input_tambon");
+                input_tambon.innerHTML = '<option value="">กรุณาเลือกแขวง/ตำบล</option>';
+                for (let item of result) {
+                    let option = document.createElement("option");
+                    option.text = item.tambon;
+                    option.value = item.tambon;
+                    input_tambon.appendChild(option);
+                }
+                //QUERY AMPHOES
+                showZipcode();
+            });
+    }
+function showZipcode() {
+        let input_province = document.querySelector("#input_province");
+        let input_amphoe = document.querySelector("#input_amphoe");
+        let input_tambon = document.querySelector("#input_tambon");
+        let url = "{{ url('/api/zipcodes') }}?province=" + input_province.value + "&amphoe=" + input_amphoe.value + "&tambon=" + input_tambon.value;
+        console.log(url);        
+        // if(input_province.value == "") return;        
+        // if(input_amphoe.value == "") return;     
+        // if(input_tambon.value == "") return;
+        fetch(url)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                let input_zipcode = document.querySelector("#input_zipcode");
+                input_zipcode.value = "";
+                for (let item of result) {
+                    input_zipcode.value = item.zipcode;
+                    break;
+                }
+            });
+}
+//EVENTS
+    document.querySelector('#input_province').addEventListener('change', (event) => {
+        showAmphoes();
+    });
+    document.querySelector('#input_amphoe').addEventListener('change', (event) => {
+        showTambons();
+    });
+    document.querySelector('#input_tambon').addEventListener('change', (event) => {
+        showZipcode();
+    });
+</script>
 @endsection

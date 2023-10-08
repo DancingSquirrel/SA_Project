@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Tambon;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,10 @@ Route::get('/', function () {
 });
 
 Route::get('/user', function () {
-    return view('user.index');
+    $provinces = Tambon::select('province')->distinct()->get();
+    $amphoes = Tambon::select('amphoe')->distinct()->get();
+    $tambons = Tambon::select('tambon')->distinct()->get();
+    return view('user.index', compact('provinces','amphoes','tambons'));
 });
 
 

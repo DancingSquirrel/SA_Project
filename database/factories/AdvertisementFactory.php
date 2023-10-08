@@ -3,29 +3,25 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
+class QuotaPriceFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
+
     public function definition(): array
     {
+        $name_URL = ['facbook', 'dehome', 'shopee','google'];
         return [
-            'name' => fake()->name(),
-            'first_name' => fake()->name(),
-            'role' => fake()->name(),
-            'last_name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'phone_number' => '0' . random_int(200000000, 999999999),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            
+            'name' => $name_URL[array_rand($name_URL)],
+            'URL' => fake()->str(30)
         ];
     }
 

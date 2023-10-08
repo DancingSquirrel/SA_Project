@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function real_estates() : HasMany
     {
-        return $this->hasMany(RealEstateController ::class);
+        return $this->hasMany(RealEstate ::class);
     }
 }

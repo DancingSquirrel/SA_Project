@@ -12,18 +12,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('real_estate_controllers', function (Blueprint $table) {
+        Schema::create('real_estates', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
             $table->string('type');
             $table->string('status');
             $table->string('address');
-            $table->string('country');
-            $table->string('city');
+            $table->string('province')->nullable();
+            $table->string('amphoe')->nullable();
+            $table->string('tambon')->nullable();
             $table->string('coordinates');
             $table->string('detail');
-            $table->integer('bedroom');
-            $table->integer('bathroom');
+            $table->string('bedroom');
+            $table->string('bathroom');
             $table->softDeletes();
             $table->timestamps();
         });
