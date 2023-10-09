@@ -1,6 +1,11 @@
 <?php
 
 use App\Models\User;
+use App\Models\Advertisement;
+use App\Models\Agreement;
+use App\Models\ImageRealEstate;
+use App\Models\QuotaPrice;
+use App\Models\RealEstate;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

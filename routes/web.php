@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Tambon;
 
@@ -18,16 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', function () {
-    $provinces = Tambon::select('province')->distinct()->get();
-    $amphoes = Tambon::select('amphoe')->distinct()->get();
-    $tambons = Tambon::select('tambon')->distinct()->get();
-    return view('user.index', compact('provinces','amphoes','tambons'));
-});
-
-
 Route::get('/welcome', function () {
     return view('user.welcome');
 });
+Route::get('/user', [UserController::class, 'popRealEstate'])->name('user.index');
+  
 
 Route::get('/private-videos/preview', 'VideoController@showPreviewVideo');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\RealEstate;
 use App\Models\Tambon;
 
 
@@ -48,4 +49,6 @@ class UserController extends Controller
             ->get();
         return $zipcodes;
     }
+
+
 }

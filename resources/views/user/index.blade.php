@@ -118,16 +118,10 @@
     </div>
 
     <div class="grid md:grid-cols-4 gap-6 justify-center p-5">
+    @foreach ($realEstateNew as $house)
         @include('layouts.itemHouse')
-        @include('layouts.itemHouse')
-        @include('layouts.itemHouse')
-        @include('layouts.itemHouse')
-        @include('layouts.itemHouse')
-        @include('layouts.itemHouse')
-        @include('layouts.itemHouse')
-        @include('layouts.itemHouse')
-        @include('layouts.itemHouse')
-        @include('layouts.itemHouse')
+    
+    @endforeach
     </div>
     <div class="flex justify-center">
         @include('layouts.pagination')

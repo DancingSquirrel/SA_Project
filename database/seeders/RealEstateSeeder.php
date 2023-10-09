@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Advertisement;
+use App\Models\Agreement;
+use App\Models\ImageRealEstate;
 use App\Models\RealEstate;
 use App\Models\QuotaPrice;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,6 +19,7 @@ class RealEstateSeeder extends Seeder
     public function run(): void
     {
         $name_URL = ['facbook', 'dehome', 'shopee','google'];
+        $typeAgree = ['consignment','deposit'];
         $real_estate = RealEstate::factory()->count(10)->create();
 
         for ($x = 1; $x <= 10; $x+=1) {
@@ -33,6 +36,27 @@ class RealEstateSeeder extends Seeder
                 $ad->URL = fake()->url('http');
                 $ad->save();
             }     
+            $image = new ImageRealEstate();
+            $image->real_estate_id = $x ;
+            $image->image_path = "storage/app/public/001/123.jpeg";
+            $image->save();
+            $image = new ImageRealEstate();
+            $image->real_estate_id = $x ;
+            $image->image_path = "storage/app/public/001/124.jpeg";
+            $image->save();
+            $image = new ImageRealEstate();
+            $image->real_estate_id = $x ;
+            $image->image_path = "storage/app/public/001/125.jpeg";
+            $image->save();
+
+            $agreement = new Agreement();
+            $agreement->real_estate_id = $x;
+            $agreement->type = "consignment";
+            $agreement->date_start = fake()->dateTimeBetween('-60 days','now');
+            $agreement->date_expired = fake()->dateTimeBetween('+14 days','+60 days');
+            $agreement->save();
+
+             
             
         }
     
