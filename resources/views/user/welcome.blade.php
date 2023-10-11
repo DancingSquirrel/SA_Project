@@ -5,7 +5,7 @@
     <div class="w-full h-full shadow-2xl overflow-hidden relative bg-black">
         <video
             src="https://static.vecteezy.com/system/resources/previews/017/039/129/mp4/signing-home-sales-and-insurance-contracts-with-real-estate-agents-signing-contracts-to-know-the-terms-of-buying-and-selling-homes-and-real-estate-contract-signing-ideas-free-video.mp4"
-            autoplay="true" loop muted class="absolute inset-0 h-full w-full object-cover opacity-25"></video>
+            autoplay="true" loop muted class="absolute inset-0 h-full w-full object-cover opacity-25 fixed"></video>
 
         <div class="flex flex-col h-full items-center justify-center relative">
             <h1 class="text-2xl text-white tracking-wider m-5" style="z-index: 2;">เราช่วยให้คุณ</h1>

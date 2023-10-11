@@ -20,9 +20,11 @@ class RealEstateSeeder extends Seeder
     {
         $name_URL = ['facbook', 'dehome', 'shopee','google'];
         $typeAgree = ['consignment','deposit'];
-        $real_estate = RealEstate::factory()->count(10)->create();
+        $real_estate = RealEstate::factory()->count(100)->create();
+        
+        
+        for ($x = 1; $x <= 100; $x+=1) {
 
-        for ($x = 1; $x <= 10; $x+=1) {
             $quotaPrice = new QuotaPrice();
             $quotaPrice->real_estate_id = $x;
             $quotaPrice->count = 1;
@@ -38,15 +40,15 @@ class RealEstateSeeder extends Seeder
             }     
             $image = new ImageRealEstate();
             $image->real_estate_id = $x ;
-            $image->image_path = "storage/app/public/001/123.jpeg";
+            $image->image_path = "/images/001/123.jpeg";
             $image->save();
             $image = new ImageRealEstate();
             $image->real_estate_id = $x ;
-            $image->image_path = "storage/app/public/001/124.jpeg";
+            $image->image_path = "/images/001/124.jpeg";
             $image->save();
             $image = new ImageRealEstate();
             $image->real_estate_id = $x ;
-            $image->image_path = "storage/app/public/001/125.jpeg";
+            $image->image_path = "/images/001/125.jpeg";
             $image->save();
 
             $agreement = new Agreement();
@@ -59,6 +61,8 @@ class RealEstateSeeder extends Seeder
              
             
         }
+
+        
     
     }
 

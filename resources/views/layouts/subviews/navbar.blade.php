@@ -4,10 +4,10 @@
 
         <div class="hidden md:flex md:items-center md:w-full" id="menu">
             <ul class="w-full md:flex items-center justify-center text-base text-gray-700 pt-4 md:pt-0">
-                <li><a class="md:p-4 py-3 px-2 block" href="user">หน้าแรก</a></li>
-                <li><a class="md:p-4 py-3 px-2 block" href="welcome">ฝากขายบ้านกับเราฟรี</a></li>
-                <li><a class="md:p-4 py-3 px-2 block" href="user.index">ทีมงาน</a></li>
-                <li><a class="md:p-4 py-3 px-2 block " href="#">เกี่ยวกับเรา</a></li>
+                <li><a class="md:p-4 py-3 px-2 block" href="{{route('user.index')}}">หน้าแรก</a></li>
+                <li><a class="md:p-4 py-3 px-2 block" href="{{route('user.welcome')}}">ฝากขายบ้านกับเราฟรี</a></li>
+                <li><a class="md:p-4 py-3 px-2 block" href="{{route('user.staff')}}">ทีมงาน</a></li>
+                <li><a class="md:p-4 py-3 px-2 block " href="{{route('user.info')}}">เกี่ยวกับเรา</a></li>
             </ul>
     </div>
     

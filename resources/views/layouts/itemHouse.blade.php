@@ -1,7 +1,7 @@
 <!-- item -->
-<div class="relative w-full overflow-hidden  rounded-lg bg-white shadow-md">
+<div class="relative w-full overflow-hidden  rounded-lg bg-white shadow-md hover:scale-110 duration-300">
             <a href="#">
-            <img class="h-60 rounded-t-lg object-cover" src="{{ asset($house->getImageRealEstate()) }}" alt="product image" />
+            <img class="rounded-t-lg" src="{{ URL::asset($house->getImageRealEstate($house)) }}" />
             </a>
             <span
                 class="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-red-700 text-center text-sm text-white">HOT

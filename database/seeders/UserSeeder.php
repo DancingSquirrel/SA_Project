@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         $user->email = "wongkum55@gmail.com";
         $user->password = "password";
         $user->phone_number = "0618204866";
+        $user->image_path = "/images/staff/staff01.jpeg";
         $user->save();
 
 
