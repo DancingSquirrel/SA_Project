@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Advertisement;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Agreement;
 use App\Models\ImageRealEstate;
 use App\Models\RealEstate;
@@ -35,20 +36,22 @@ class RealEstateSeeder extends Seeder
                 $ad = new Advertisement();
                 $ad->real_estate_id = $x ;
                 $ad->name = $name_URL[$i];
+                $ad->ad_start = fake()->dateTimeBetween('-60 days','now');
+                $ad->ad_expired =fake()->dateTimeBetween('+60 days','+120 days');
                 $ad->URL = fake()->url('http');
                 $ad->save();
             }     
             $image = new ImageRealEstate();
             $image->real_estate_id = $x ;
-            $image->image_path = "/images/001/123.jpeg";
+            $image->image_path = 'storage/realestate/123.jpeg';
             $image->save();
             $image = new ImageRealEstate();
             $image->real_estate_id = $x ;
-            $image->image_path = "/images/001/124.jpeg";
+            $image->image_path = 'storage/realestate/124.jpeg';
             $image->save();
             $image = new ImageRealEstate();
             $image->real_estate_id = $x ;
-            $image->image_path = "/images/001/125.jpeg";
+            $image->image_path = 'storage/realestate/125.jpeg';
             $image->save();
 
             $agreement = new Agreement();

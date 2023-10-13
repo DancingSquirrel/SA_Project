@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RealEstateController;
+use App\Models\RealEstate;
 use Illuminate\Support\Facades\Route;
 use App\Models\Tambon;
 
@@ -16,7 +18,7 @@ use App\Models\Tambon;
 */
 
 Route::get('/', function () {
-    return view('user.index');
+    return view('user.welcome');
 });
 
 Route::get('/welcome', function () {
@@ -25,22 +27,19 @@ Route::get('/welcome', function () {
 Route::get('/info', function () {
     return view('user.info');
 })->name('user.info');
-Route::get('/realEstate', function () {
-    return view('realEstate');
-});
+
 
 
 
 Route::get('/admin', function () {
     return view('admin.index');
 })->name('admin.index');
-Route::get('/admin/realEstateList', function () {
-    return view('admin.realEstateList');
-})->name('admin.realEstateList');
-Route::get('/admin/realEstateExpires', function () {
-    return view('admin.realEstateExpires');
-})->name('admin.realEstateExpires');
-
+Route::get('/admin/realEstateList', [RealEstateController::class, 'showRealEstate'])->name('admin.realEstateList');
+Route::get('/admin/staffList', [UserController::class, 'popAllStaffList'])->name('admin.staffList');
+Route::get('/admin/realEstateExpires', [RealEstateController::class, 'showRealEstatePrivate'])->name('admin.realEstateExpires');
+Route::get('/admin/promoteList', [RealEstateController::class, 'popAllPromoteList'])->name('admin.promoteList');
+Route::get('/admin/createRealEstate', [RealEstateController::class, 'getViewCreateRealEstate'])->name('admin.createRealEstate'); 
+Route::post('/admin/createRealEstate/create', [RealEstateController::class, 'createNewRealEstate'])->name('admin.createRealEstate.create'); 
 
 
 Route::get('/setting', function () {
@@ -56,10 +55,9 @@ Route::get('/setting/changePassword', function () {
 
 
 
-Route::get('/user', [UserController::class, 'popRealEstate'])->name('user.index');
-Route::post('/user', [UserController::class, 'popSearchRealEstate'])->name('user.index.select'); 
+Route::get('/user', [UserController::class, 'popRealEstate'])->name('user.index'); 
 Route::get('/user/staff', [UserController::class, 'popAllStaff'])->name('user.staff');
 
-Route::get('/private-videos/preview', 'VideoController@showPreviewVideo');
 
 
+Route::get('/realEstate/{realEstate}',[RealEstateController::class, 'selectRealEstate'])->name('realEstate');

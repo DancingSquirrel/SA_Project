@@ -26,7 +26,8 @@ return new class extends Migration
             $table->string('province')->nullable();
             $table->string('amphoe')->nullable();
             $table->string('tambon')->nullable();
-            $table->string('coordinates');
+            $table->double('area');
+            $table->string('coordinates')->unique();
             $table->string('detail');
             $table->string('bedroom');
             $table->string('bathroom');

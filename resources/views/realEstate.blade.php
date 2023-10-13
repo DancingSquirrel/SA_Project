@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.product_layout')
 
 @section('content')
 <div class="p-10 font-poppins ">
@@ -7,31 +7,73 @@
             <div class="w-full px-4 mb-8 md:w-1/2 md:mb-0">
                 <div class=" top-0 ">
                     <div class=" mb-6 lg:mb-10 lg:h-96">
-                        <div class="flex flex-row">
-                            <div class="flex flex-col justify-center h-1/2">
-                                <a class="flex" href="#">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="w-5 h-5 text-blue-500 bi bi-chevron-left " viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z">
-                                        </path>
-                                    </svg>
-                                </a>
+                        <!-- carousel -->
+                        <div class="max-w-2xl mx-auto">
+
+                            <div id="default-carousel" class="relative" data-carousel="static">
+                                <!-- Carousel wrapper -->
+                                <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+                                    <!-- Item 1 -->
+                                    @foreach($realEstate->getImage_paths($realEstate) as $image_path)
+                                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                        <span
+                                            class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First
+                                            Slide</span>
+                                        <img src="{{ Storage::url($image_path) }}"
+                                            class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+                                            alt="...">
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <!-- Slider indicators -->
+                                <div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
+                                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
+                                        aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
+                                        aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
+                                        aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                                </div>
+                                <!-- Slider controls -->
+                                <button type="button"
+                                    class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+                                    data-carousel-prev>
+                                    <span
+                                        class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                        <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 19l-7-7 7-7"></path>
+                                        </svg>
+                                        <span class="hidden">Previous</span>
+                                    </span>
+                                </button>
+                                <button type="button"
+                                    class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+                                    data-carousel-next>
+                                    <span
+                                        class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                        <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                        <span class="hidden">Next</span>
+                                    </span>
+                                </button>
                             </div>
 
-                            <img class="object-contain w-full lg:h-full"
-                                src="https://i.postimg.cc/0jwyVgqz/Microprocessor1-removebg-preview.png" alt="">
-                            <div class="flex flex-col justify-center h-1/2">
-                                <a class="right-0 transform lg:mr-2 top-1/2" href="#">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="w-5 h-5 text-blue-500 bi bi-chevron-right " viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg>
-                                </a>
-                            </div>
+                            
+                            <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
                         </div>
+                        <!-- end carousel -->
+
+                        
+
+
+
                     </div>
 
                 </div>
@@ -39,70 +81,24 @@
             <div class="w-full px-4 md:w-1/2">
                 <div class="lg:pl-20 m-10">
                     <div class="mb-6 ">
-                        <span class="px-2.5 py-0.5 text-xs text-blue-600 bg-blue-100 rounded-xl ">New
-                            Arrival</span>
-                        <h2
-                            class="max-w-xl mt-6 mb-6 text-xl font-semibold leading-loose tracking-wide text-gray-700 md:text-2xl">
-                            Intel® Core™ i5-12600HX Processor (18M Cache, up to 4.60 GHz)
+
+                        <h2 class="max-w-xl font-semibold leading-loose tracking-wide text-gray-700 md:text-2xl">
+                            {{$realEstate->address}}
                         </h2>
-                        <div class="flex flex-wrap items-center mb-6">
-                            <ul class="flex mb-4 mr-2 lg:mb-0">
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="w-4 mr-1 text-red-500 bi bi-star "
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="w-4 mr-1 text-red-500 bi bi-star "
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="w-4 mr-1 text-red-500 bi bi-star "
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="w-4 mr-1 text-red-500  bi bi-star "
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                            <a class="mb-4 text-xs underline hover:text-blue-600 lg:mb-0" href="#">
-                                View the acer store
-                            </a>
-                        </div>
+                        <h2 class="font-semibold leading-loose tracking-wide text-gray-500 md:text-sm">
+                            {{$realEstate->tambon}},{{$realEstate->amphoe}},{{$realEstate->province}}
+                        </h2>
+                        <h2
+                            class="max-w-xl mt-6 mb-6 font-semibold leading-loose tracking-wide text-gray-500 md:text-sm">
+                            {{$realEstate->detail}}
+                        </h2>
+
                         <p class="inline-block text-2xl font-semibold text-gray-700 ">
-                            <span>Rs.7,000.00</span>
-                            <span class="ml-3 text-base font-normal text-gray-500 line-through ">Rs.10,000.00</span>
+                            <span>฿ {{number_format($realEstate->getPrice($realEstate))}} บาท</span>
                         </p>
                     </div>
                     <div class="mb-6">
-                        <h2 class="mb-2 text-lg font-bold text-gray-700 ">System Specs :</h2>
+                        <h2 class="mb-2 text-lg font-bold text-gray-700 ">Details :</h2>
                         <div class="bg-gray-100 rounded-xl">
                             <div class="p-3 lg:p-5 ">
                                 <div class="p-2 rounded-xl lg:p-6 bg-gray-50">
@@ -110,20 +106,27 @@
                                         <div class="w-full mb-4 md:w-2/5">
                                             <div class="flex ">
                                                 <span class="mr-3 text-gray-500 ">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-diagram-3 w-7 h-7"
-                                                        viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd"
-                                                            d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z">
-                                                        </path>
+                                                    <svg fill="#000000" class="bi bi-diagram-3 w-7 h-7" height="64px"
+                                                        width="64px" version="1.1" id="Capa_1"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        viewBox="0 0 211.667 211.667" xml:space="preserve">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                            stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <path
+                                                                d="M211.667,98.551c0,2.209-1.791,4-4,4H201v26.448c0,13.403-7.085,25.178-17.702,31.792l7.999,14.878 c1.046,1.946,0.317,4.371-1.629,5.418c-0.603,0.323-1.251,0.478-1.891,0.478c-1.425,0-2.804-0.764-3.526-2.106l-8.164-15.186 c-3.918,1.395-8.131,2.161-12.522,2.161H48.102c-3.755,0-7.38-0.562-10.802-1.595l-7.86,14.62c-0.722,1.343-2.102,2.106-3.526,2.106 c-0.64,0-1.288-0.154-1.891-0.478c-1.946-1.047-2.675-3.472-1.629-5.418l7.512-13.972c-11.465-6.406-19.239-18.659-19.239-32.699 v-26.448H4c-2.209,0-4-1.791-4-4s1.791-4,4-4h10.667H197h10.667C209.876,94.551,211.667,96.342,211.667,98.551z M4,60.814h43.083 c3.584,0,6.5,2.916,6.5,6.5v8.5c0,2.209,1.791,4,4,4s4-1.791,4-4v-8.5c0-7.995-6.505-14.5-14.5-14.5H4c-2.209,0-4,1.791-4,4 S1.791,60.814,4,60.814z M9.25,48.602h6.833c2.209,0,4-1.791,4-4v-10.5c0-2.209-1.791-4-4-4H9.25c-5.101,0-9.25,4.149-9.25,9.25 S4.149,48.602,9.25,48.602z">
+                                                            </path>
+                                                        </g>
                                                     </svg>
                                                 </span>
                                                 <div>
                                                     <p class="mb-2 text-sm font-medium text-gray-500 ">
-                                                        No. of cores
+                                                        Bathroom
                                                     </p>
                                                     <h2 class="text-base font-semibold text-gray-700 ">
-                                                        12 Cores
+                                                        {{$realEstate->bathroom}}
                                                     </h2>
                                                 </div>
                                             </div>
@@ -131,134 +134,112 @@
                                         <div class="w-full mb-4 md:w-2/5">
                                             <div class="flex ">
                                                 <span class="mr-3 text-gray-500 ">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-gpu-card w-7 h-7"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M4 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm7.5-1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z">
-                                                        </path>
-                                                        <path
-                                                            d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .5.5V4h13.5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H2v2.5a.5.5 0 0 1-1 0V2H.5a.5.5 0 0 1-.5-.5Zm5.5 4a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM9 8a2.5 2.5 0 1 0 5 0 2.5 2.5 0 0 0-5 0Z">
-                                                        </path>
-                                                        <path
-                                                            d="M3 12.5h3.5v1a.5.5 0 0 1-.5.5H3.5a.5.5 0 0 1-.5-.5v-1Zm4 1v-1h4v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5Z">
-                                                        </path>
+                                                    <svg fill="#000000" class="bi bi-gpu-card w-7 h-7" version="1.1"
+                                                        id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"
+                                                        xml:space="preserve" width="64px" height="64px">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                            stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <g>
+                                                                <g>
+                                                                    <path
+                                                                        d="M20.724,388.876v26.819c0,10.099,8.187,18.286,18.286,18.286s18.286-8.187,18.286-18.286v-26.819H20.724z">
+                                                                    </path>
+                                                                </g>
+                                                            </g>
+                                                            <g>
+                                                                <g>
+                                                                    <path
+                                                                        d="M454.705,388.876v26.819c0,10.099,8.187,18.286,18.286,18.286c10.099,0,18.286-8.187,18.286-18.286v-26.819H454.705z">
+                                                                    </path>
+                                                                </g>
+                                                            </g>
+                                                            <g>
+                                                                <g>
+                                                                    <rect y="243.81" width="512" height="131.657">
+                                                                    </rect>
+                                                                </g>
+                                                            </g>
+                                                            <g>
+                                                                <g>
+                                                                    <path
+                                                                        d="M420.854,78.019H91.146c-15.169,0-27.755,11.214-27.755,26.381v49.231l23.963-0.032c-0.26-1.219-0.397-2.3-0.397-3.657 c0-10.941,8.87-19.505,19.81-19.505h298.47c10.941,0,19.81,8.564,19.81,19.505c0,1.357-0.138,2.438-0.397,3.657h23.962v-49.2 C448.61,89.233,436.023,78.019,420.854,78.019z">
+                                                                    </path>
+                                                                </g>
+                                                            </g>
+                                                            <g>
+                                                                <g>
+                                                                    <polygon
+                                                                        points="456.609,183.985 55.214,183.985 32.713,216.99 479.287,216.99 ">
+                                                                    </polygon>
+                                                                </g>
+                                                            </g>
+                                                        </g>
                                                     </svg>
                                                 </span>
                                                 <div>
                                                     <p class="mb-2 text-sm font-medium text-gray-500 ">
-                                                        Graphic
+                                                        Bedroom
                                                     </p>
                                                     <h2 class="text-base font-semibold text-gray-700 ">
-                                                        Intel UHD
+                                                        {{$realEstate->bedroom}}
                                                     </h2>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="w-full mb-4 lg:mb-0 md:w-2/5">
-                                            <div class="flex ">
-                                                <span class="mr-3 text-gray-500">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="w-7 h-7 bi bi-cpu"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z">
-                                                        </path>
-                                                    </svg>
-                                                </span>
-                                                <div>
-                                                    <p class="mb-2 text-sm font-medium text-gray-500 ">
-                                                        Processor
-                                                    </p>
-                                                    <h2 class="text-base font-semibold text-gray-700 ">
-                                                        INTEL 80486
-                                                    </h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w-full mb-4 lg:mb-0 md:w-2/5">
-                                            <div class="flex ">
-                                                <span class="mr-3 text-gray-500 ">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-clock-history w-7 h-7"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z">
-                                                        </path>
-                                                        <path
-                                                            d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z">
-                                                        </path>
-                                                        <path
-                                                            d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z">
-                                                        </path>
-                                                    </svg>
-                                                </span>
-                                                <div>
-                                                    <p class="mb-2 text-sm font-medium text-gray-500">
-                                                        Frequency
-                                                    </p>
-                                                    <h2 class="text-base font-semibold text-gray-700">
-                                                        3.5 GHz
-                                                    </h2>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="py-6 mb-6 border-t border-b border-gray-200 ">
-                        <span class="text-base text-gray-600 ">In Stock</span>
-                        <p class="mt-2 text-sm text-blue-500 ">Ships from china.
-                            <span class="text-gray-600 ">
-                                Most customers receive within 3-31 days.
-                            </span>
-                        </p>
-                    </div>
-                    <div class="mb-6 "></div>
-                    <div class="flex flex-wrap items-center mb-6">
-                        <div class="mb-4 mr-4 lg:mb-0">
-                            <div class="w-28">
-                                <div class="relative flex flex-row w-full h-10 bg-transparent rounded-lg">
-                                    <button
-                                        class="w-20 h-full text-gray-600 bg-gray-100 border-r rounded-l outline-none cursor-pointer hover:bg-gray-300">
-                                        <span class="m-auto text-2xl font-thin">-</span>
-                                    </button>
-                                    <input type="number"
-                                        class="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-100 outline-none focus:outline-none text-md hover:text-black"
-                                        placeholder="1">
-                                    <button
-                                        class="w-20 h-full text-gray-600 bg-gray-100 border-l rounded-r outline-none cursor-pointer hover:text-gray-700 hover:bg-gray-300">
-                                        <span class="m-auto text-2xl font-thin">+</span>
-                                    </button>
+
+                    <div role="listitem"
+                        class="border-gray-200 border-t border-b xl:w-full sm:w-3/4 md:w-2/5 relative sm:mb-24 xl:max-w-sm lg:w-2/5">
+                        <div class="rounded overflow-hidden shadow-md bg-white mt-10">
+                            <div class="absolute -mt-20 w-full flex justify-center">
+                                <div class="h-32 w-32">
+                                    <img src="{{ URL::asset($realEstate->user()->get()->first()->image_path) }}"
+                                        alt="Display Picture of Andres Berlin" role="img"
+                                        class="rounded-full object-cover h-full w-full shadow-md">
+                                </div>
+                            </div>
+                            <div class="px-6 mt-16">
+                                <h1 class="font-bold text-3xl text-center mb-1">
+                                    {{$realEstate->user()->get()->first()->name}}</h1>
+                                <p class="text-gray-800 text-sm text-center">
+                                    {{$realEstate->user()->get()->first()->first_name}}
+                                    {{$realEstate->user()->get()->first()->last_name}}</p>
+                                <p class="text-center text-gray-600 text-base pt-3 font-normal">Tel.
+                                    {{$realEstate->user()->get()->first()->phone_number}}</p>
+                                <p class="text-center text-gray-600 text-base pt-3 font-normal">Email:
+                                    {{$realEstate->user()->get()->first()->email}}</p>
+                                <div class="w-full flex justify-center pt-5 pb-5">
+
+
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-4 lg:mb-0">
-                            <button
-                                class="flex items-center justify-center w-full h-10 p-2 mr-4 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50  hover:bg-blue-600 hover:border-blue-600  ">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class=" bi bi-heart" viewBox="0 0 16 16">
-                                    <path
-                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </div>
-                        <a href="#"
-                            class="w-full px-4 py-3 text-center text-blue-600 bg-blue-100 border border-blue-600 hover:bg-blue-600 hover:text-gray-100 lg:w-1/2 rounded-xl">
-                            Add to cart
-                        </a>
                     </div>
-                    <div class="flex gap-4 mb-6">
-                        <a href="#"
-                            class="w-full px-4 py-3 text-center text-gray-100 bg-blue-600 border border-transparent hover:border-blue-500 hover:text-blue-700 hover:bg-blue-100  rounded-xl">
-                            Buy now</a>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    const $prevButton = document.getElementById('data-carousel-prev');
+    const $nextButton = document.getElementById('data-carousel-next');
+
+$prevButton.addEventListener('click', () => {
+    carousel.prev();
+});
+
+$nextButton.addEventListener('click', () => {
+    carousel.next();
+});
+</script>
+
 @endsection

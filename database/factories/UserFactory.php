@@ -20,7 +20,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'first_name' => fake()->name(),
-            'role' => fake()->name(),
+            'role' => 'staff',
             'last_name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'phone_number' => '0' . random_int(200000000, 999999999),

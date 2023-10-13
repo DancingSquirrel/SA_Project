@@ -2,7 +2,7 @@
 
 @section('admin_content') <div class="animate-fade-down mx-full w-full p-2">
     <div class="flex-shrink max-w-full px-4 w-full">
-        <p class="text-3xl font-poppin pt-3 pb-5">RealEstate List</p>
+        <p class="text-3xl font-poppin pt-3 pb-5">Staff List</p>
     </div>
     <div class="flex flex-wrap flex-col">
 
@@ -13,7 +13,7 @@
                 <div class="flex-shrink max-w-full px-4 w-full">
                     <div class="md:flex md:justify-between">
                         <div>
-                            <a href="{{route('admin.createRealEstate')}}"
+                            <a href="#"
                                 class="py-2 px-4 mb-3 block lg:inline-block text-center rounded leading-5 text-gray-100 bg-indigo-500 border border-indigo-500 hover:text-white hover:bg-indigo-600 hover:ring-0 hover:border-indigo-600 focus:bg-indigo-600 focus:border-indigo-600 focus:outline-none focus:ring-0">Add
                                 new <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                                     class="inline-block ltr:ml-1 rtl:mr-1 bi bi-plus-lg" viewBox="0 0 16 16">
@@ -25,24 +25,16 @@
 
                         <div>
 
-                            <form action="{{ route('admin.realEstateList') }}" method="GET" class="dataTable-top flex flex-row justify-between m-5">
-                            
+                            <form action="{{ route('admin.staffList') }}" method="GET"
+                                class="dataTable-top flex flex-row justify-between m-5">
+
                                 <div class="flex justify-center p-3" id="bulk-actions">
-                                    <label class="flex flex-wrap flex-row">
-                                        <select id="input_status" name="input_status"
-                                            class="inline-block leading-5 relative  px-5 py-2 ltr:pl-3 ltr:pr-8 rtl:pr-3 rtl:pl-8 mx-1 rounded bg-gray-100 border border-gray-200 overflow-x-auto focus:outline-none focus:border-gray-300 focus:ring-0 select-caret appearance-none">
-                                            <option value="">Action</option>
-                                            <option value="pubilc">Pubilc</option>
-                                            <option value="private">Private</option>
-                                            <option value="in progress">In progress</option>
-                                            <option value="complete">Complete</option>
-                                        </select>
-                                    </label>
+
                                 </div>
                                 <div class="flex justify-center p-3">
-                                    <input id="input_anything" name="input_anything" class="dataTable-input bg-gray-200 px-3 py-2 rounded-md"
-                                        value="{{ $input_anything }}"
-                                        placeholder="Search..." type="text">
+                                    <input id="input_anything" name="input_anything"
+                                        class="dataTable-input bg-gray-200 px-3 py-2 rounded-md"
+                                        value="{{ $input_anything }}" placeholder="Search..." type="text">
                                 </div>
 
                                 <div class="flex justify-center p-3">
@@ -69,26 +61,24 @@
                                             <tr class="bg-gray-100">
 
                                                 <th data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">Address</a>
+                                                    <a href="#" class="dataTable-sorter mx-5">name</a>
                                                 </th>
                                                 <th class="hidden lg:table-cell" data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">Province </a>
+                                                    <a href="#" class="dataTable-sorter mx-5">FirstName </a>
                                                 </th>
                                                 <th class="text-center" data-sortable="false">
-                                                    <p class="text-center dataTable-sorter mx-10">Amphoe</p>
+                                                    <p class="text-center dataTable-sorter mx-10">LastName</p>
+                                                </th>
+                                                <th class="text-center" data-sortable="false">
+                                                    <p class="text-center dataTable-sorter mx-10">Role</p>
                                                 </th>
                                                 <th data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">Price</a>
+                                                    <a href="#" class="dataTable-sorter mx-5">PhoneNumber</a>
                                                 </th>
                                                 <th data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">Staff</a>
+                                                    <a href="#" class="dataTable-sorter mx-5">Email</a>
                                                 </th>
-                                                <th class="hidden lg:table-cell" data-sortable="">
-                                                    <a href="#" class="dataTable-sorter text-xs mx-5">Contract Expires Date</a>
-                                                </th>
-                                                <th class="hidden lg:table-cell" data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-10">Status</a>
-                                                </th>
+
                                                 <th class="text-center" data-sortable="false">
                                                     <p class="text-center dataTable-sorter mx-10">Actions</p>
                                                 </th>
@@ -96,43 +86,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($realEstates as $realEstate)
+                                            @foreach ($staffs as $staff)
                                             <tr>
                                                 <td>
                                                     <a href="#">
                                                         <div class="flex flex-wrap flex-row items-center m-3 text-xs">
 
                                                             <div class="leading-5 flex-1 ltr:ml-2 rtl:mr-2 mb-1">
-                                                                {{$realEstate->address}}
+                                                                {{$staff->name}}
 
                                                             </div>
                                                         </div>
                                                     </a>
                                                 </td>
-                                                <td class="text-center hidden lg:table-cell">{{$realEstate->province}}
+                                                <td class="text-center hidden lg:table-cell">{{$staff->first_name}}
                                                 </td>
-                                                <td class="text-center">{{$realEstate->amphoe}}</td>
+                                                <td class="text-center">{{$staff->last_name}}</td>
                                                 <td class="text-center hidden lg:table-cell">
-                                                    {{number_format($realEstate->getPrice($realEstate))}}</td>
+                                                    {{$staff->role}}</td>
                                                 <td class="text-center hidden lg:table-cell">
-                                                    {{$realEstate->user()->get()->first()->name}}</td>
+                                                    {{$staff->phone_number}}</td>
                                                 <td class="text-center hidden lg:table-cell">
-                                                    {{$realEstate->agreements()->get()->first()->date_expired}}</td>
-                                                <td class="text-center hidden lg:table-cell">
-                                                    @if($realEstate->status =='pubilc')
-                                                    <span
-                                                        class="text-sm px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full w-full">{{$realEstate->status}}</span>
-                                                    @elseif($realEstate->status =='in progress')
-                                                    <span
-                                                        class="text-sm px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full w-full">{{$realEstate->status}}</span>
-                                                    @elseif($realEstate->status =='complete')
-                                                    <span
-                                                        class="text-sm px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full w-full">{{$realEstate->status}}</span>
-                                                    @else
-                                                    <span
-                                                        class="text-sm px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full w-full">{{$realEstate->status}}</span>
-                                                    @endif
-                                                </td>
+                                                    {{$staff->email}}</td>
                                                 <td class="text-center">
                                                     <a href="javascript:;"
                                                         class="inline-block ltr:mr-2 rtl:ml-2 hover:text-red-500"
@@ -172,9 +147,8 @@
                                         <div></div>
                                         <div></div>
                                         <div class="flex items-center col-span-3">
-                                            {{ $realEstates->appends([
+                                            {{ $staffs->appends([
                                                     'input_anything' => $input_anything,
-                                                    'input_status' => $input_status,
                                                 ])->links() }}
                                         </div>
 

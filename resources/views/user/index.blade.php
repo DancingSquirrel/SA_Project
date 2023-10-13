@@ -9,9 +9,8 @@
     <!-- search bar -->
     <div class="border border-gray-300 p-5 grid grid-cols-1 gap-6 bg-white shadow-lg rounded-lg">
 
-        <form action="{{ route('user.index.select') }}" class="grid grid-cols-1 md:grid-cols-8 gap-6 " method="POST">
+        <form action="{{ route('user.index') }}" class="grid grid-cols-1 md:grid-cols-8 gap-6 " method="GET">
             <!-- 1 -->
-            @csrf
             <div class="grid grid-cols-4 sm:col-span-4 gap-4 border border-gray-200 p-2 rounded">
                 <h3 class="sm:col-span-1 text-xs m-2">เลือกพื้นที่ที่ต้องการค้นหา</h3>
 
@@ -129,7 +128,7 @@
     </div>
 
     <div class="grid md:grid-cols-4 gap-6 justify-center p-5">
-    @foreach ($realEstateNew as $house)
+    @foreach ($realEstateNew as $realEstate)
         @include('layouts.itemHouse')
     
     @endforeach
