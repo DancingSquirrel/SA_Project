@@ -13,6 +13,7 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use App\Http\Requests\RealEstateFormRequest;
 
 class RealEstateController extends Controller
 {
@@ -69,33 +70,35 @@ class RealEstateController extends Controller
             'tambons' => $tambons,]);
     }
 
-    public function createNewRealEstate(Request $request){
+    public function createNewRealEstate(RealEstateFormRequest $request){
+        $validatedData = $request->validated();
+        $request->validate([
+            'input_images' => 'required'
+        ]);
 
-        
-        
         // realestate
         
-        $address = $request->get('address'); //*
-        $province = $request->get('input_province'); //*
-        $coordinates = $request->get('coordinates');
-        $amphoe = $request->get('input_amphoe');
-        $tambon = $request->get('input_tambon');
-        $area = $request->get('area'); //*
-        $staff_id = $request->get('staff_id');
-        $typeRealEstate = $request->get('input_type_real_estate');//*
-        $bedroom = $request->get('input_bedroom'); //*
-        $bathroom = $request->get('input_bathroom'); //*
-        $detail = $request->get('detail'); //*
+        $address = $validatedData->get('address'); //*
+        $province = $validatedData->get('input_province'); //*
+        $coordinates = $validatedData->get('coordinates');
+        $amphoe = $validatedData->get('input_amphoe');
+        $tambon = $validatedData->get('input_tambon');
+        $area = $validatedData->get('area'); //*
+        $staff_id = $validatedData->get('staff_id');
+        $typeRealEstate = $validatedData->get('input_type_real_estate');//*
+        $bedroom = $validatedData->get('input_bedroom'); //*
+        $bathroom = $validatedData->get('input_bathroom'); //*
+        $detail = $validatedData->get('detail'); //*
         $status = 'pubilc';
 
         // quotaprice
-        $price = $request->get('price');
+        $price = $validatedData->get('price');
         $date_change = date("Y-m-d H:i:s");
         // image
-        $images = $request->file('input_images');
+        $images = $validatedData->file('input_images');
         //agreement
-        $date_start = $request->get('date_start');
-        $date_expired = $request->get('date_expired');
+        $date_start = $validatedData->get('date_start');
+        $date_expired = $validatedData->get('date_expired');
         $type = 'consignment';
 
 
@@ -147,6 +150,40 @@ class RealEstateController extends Controller
 
         return redirect()->route('admin.realEstateList');
     }
+
+    public function tmpUpload(Request $request){
+        $image = $request->file('input_image');
+        $file_name = $image->getClientOriginalName();
+        return $file_name;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function getViewEditRealEstate(RealEstate $realEstate){
+        $provinces = Tambon::select('province')->distinct()->get();
+        $amphoes = Tambon::select('amphoe')->distinct()->get();
+        $tambons = Tambon::select('tambon')->distinct()->get();
+        $staffs = User::where('role', 'staff')->get();
+
+        return view('admin.editRealEstate', [
+            'realEstate' => $realEstate,
+            'staffs' => $staffs,
+            'provinces' => $provinces,
+            'amphoes' => $amphoes,
+            'tambons' => $tambons,]);
+    }
+
+    
+
+
 
 
     

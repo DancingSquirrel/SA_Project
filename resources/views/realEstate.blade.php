@@ -9,7 +9,7 @@
                     <div class=" mb-6 lg:mb-10 lg:h-96">
                         <!-- carousel -->
                         <div class="max-w-2xl mx-auto">
-
+                            
                             <div id="default-carousel" class="relative" data-carousel="static">
                                 <!-- Carousel wrapper -->
                                 <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
@@ -17,9 +17,9 @@
                                     @foreach($realEstate->getImage_paths($realEstate) as $image_path)
                                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                                         <span
-                                            class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First
+                                            class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl">First
                                             Slide</span>
-                                        <img src="{{ Storage::url($image_path) }}"
+                                        <img src="{{asset($image_path) }}"
                                             class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
                                             alt="...">
                                     </div>
@@ -39,8 +39,8 @@
                                     class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
                                     data-carousel-prev>
                                     <span
-                                        class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                        <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+                                        class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                                        <svg class="w-5 h-5 text-white sm:w-6 sm:h-6" fill="none"
                                             stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -53,8 +53,8 @@
                                     class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
                                     data-carousel-next>
                                     <span
-                                        class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                        <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
+                                        class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                                        <svg class="w-5 h-5 text-white sm:w-6 sm:h-6" fill="none"
                                             stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -69,6 +69,9 @@
                             <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
                         </div>
                         <!-- end carousel -->
+
+
+                        
 
                         
 
@@ -103,6 +106,41 @@
                             <div class="p-3 lg:p-5 ">
                                 <div class="p-2 rounded-xl lg:p-6 bg-gray-50">
                                     <div class="flex flex-wrap justify-center gap-x-10 gap-y-4">
+                                        <!-- 1 -->
+                                        <div class="w-full mb-4 md:w-2/5">
+                                            <div class="flex ">
+                                                <span class="mr-3 text-gray-500 ">
+                                                    
+                                                    <svg class="bi bi-diagram-3 w-7 h-7" fill="#000000" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M105.739,244.87v166.957h300.522V244.87H105.739z M256,378.435H155.826c-9.217,0-16.696-7.479-16.696-16.696 s7.479-16.696,16.696-16.696H256c9.217,0,16.696,7.479,16.696,16.696S265.217,378.435,256,378.435z M356.174,311.652H155.826 c-9.217,0-16.696-7.479-16.696-16.696c0-9.217,7.479-16.696,16.696-16.696h200.348c9.217,0,16.696,7.479,16.696,16.696 C372.87,304.174,365.391,311.652,356.174,311.652z"></path> </g> </g> <g> <g> <path d="M456.348,144.696h-90.36L300.772,27.674c-0.073-0.131-0.176-0.233-0.252-0.362C292.001,10.697,274.736,0,256,0 c-18.508,0-35.259,10.09-44.028,26.328c-0.078,0.13-0.181,0.235-0.255,0.367l-65.703,118H55.652 c-27.619,0-50.087,22.468-50.087,50.087v267.13C5.565,489.532,28.033,512,55.652,512h400.696 c27.619,0,50.087-22.468,50.087-50.087v-267.13C506.435,167.164,483.967,144.696,456.348,144.696z M218.568,83.026 c9.185,10.426,22.476,17.148,37.432,17.148c14.939,0,28.218-6.706,37.403-17.112l34.349,61.634H184.23L218.568,83.026z M439.652,428.522c0,9.217-7.479,16.696-16.696,16.696H89.044c-9.217,0-16.696-7.479-16.696-16.696V228.174 c0-9.217,7.479-16.696,16.696-16.696h333.913c9.217,0,16.696,7.479,16.696,16.696V428.522z"></path> </g> </g> </g></svg>
+                                                </span>
+                                                <div>
+                                                    <p class="mb-2 text-sm font-medium text-gray-500 ">
+                                                        type
+                                                    </p>
+                                                    <h2 class="text-base font-semibold text-gray-700 ">
+                                                        {{$realEstate->type}}
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 2 -->
+                                        <div class="w-full mb-4 md:w-2/5">
+                                            <div class="flex ">
+                                                <span class="mr-3 text-gray-500 ">
+                                                    
+                                                    <svg class="bi bi-gpu-card w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40973 4.40973 4.71569 4.21799 5.09202C4 5.51984 4 6.07989 4 7.2V8M4 11V13M4 16V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.07989 20 7.2 20H8M11 20H13M16 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V16M20 13V11M20 8V7.2C20 6.0799 20 5.51984 19.782 5.09202C19.5903 4.71569 19.2843 4.40973 18.908 4.21799C18.4802 4 17.9201 4 16.8 4H16M13 4H11" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                                </span>
+                                                <div>
+                                                    <p class="mb-2 text-sm font-medium text-gray-500 ">
+                                                        area
+                                                    </p>
+                                                    <h2 class="text-base font-semibold text-gray-700 ">
+                                                        {{$realEstate->area}} sq m.
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 3 -->
                                         <div class="w-full mb-4 md:w-2/5">
                                             <div class="flex ">
                                                 <span class="mr-3 text-gray-500 ">
@@ -131,6 +169,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- 4 -->
                                         <div class="w-full mb-4 md:w-2/5">
                                             <div class="flex ">
                                                 <span class="mr-3 text-gray-500 ">

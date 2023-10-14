@@ -56,6 +56,28 @@ class RealEstate extends Model
         $path = $imagepath->image_path;
         return $path;
     }
+    public function getAllImagePathRealEstate(RealEstate $realEstate){
+        $image_paths = ImageRealEstate::where('real_estate_id', $realEstate->id)->get();
+        return response()->json($image_paths);
+    }
+
+    public function getStaffNameRealEstate(RealEstate $realEstate){
+        $name =  $realEstate->user()->get()->first()->name;
+        return $name;
+    }
+
+    public function getAgreementStart(RealEstate $realEstate){
+        $id = $realEstate->id;
+        $agreement = Agreement::where('real_estate_id', $id)->firstOrFail();
+        $date = $agreement->date_start;
+        return $date;
+    }
+    public function getAgreementExpired(RealEstate $realEstate){
+        $id = $realEstate->id;
+        $agreement = Agreement::where('real_estate_id', $id)->firstOrFail();
+        $date = $agreement->date_expired;
+        return $date;
+    }
 
     // public function getSearchRealEstate(Request $request){
     //     $province = $request['input_province'] ?? "";

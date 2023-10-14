@@ -7,7 +7,7 @@
     <div class="flex flex-wrap flex-col">
 
 
-        <div class="m-8 bg-white rounded-lg shadow-lg ">
+        <div class="m-8 bg-white rounded-lg shadow-md m-3  ">
 
             <div class="flex flex-wrap flex-row mx-4">
                 <div class="flex-shrink max-w-full px-4 w-full">

@@ -17,7 +17,7 @@
 
                 <!-- 4 -->
                 <select id="input_province" name="input_province"
-                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="">เลือกจังหวัด</option>
                     @foreach($provinces as $item)
                     <option value="{{ $item->province }}">{{ $item->province }}</option>
@@ -27,7 +27,7 @@
 
                 <!-- 5 -->
                 <select id="input_amphoe" name="input_amphoe"
-                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="">เลือกเขต/อำเภอ</option>
                     @foreach($amphoes as $item)
                     <option value="{{ $item->amphoe }}">{{ $item->amphoe }}</option>
@@ -36,7 +36,7 @@
                 </select>
                 <!-- 5 -->
                 <select id="input_tambon" name="input_tambon"
-                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="">เลือกแขวง/ตำบล</option>
                     @foreach($tambons as $item)
                     <option value="{{ $item->tambon }}">{{ $item->tambon }}</option>
@@ -50,7 +50,7 @@
 
                 <!-- 4 -->
                 <select id="input_type_real_estate" name="input_type_real_estate"
-                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="">ประเภท</option>
                     <option value="house">บ้านเดี่ยว</option>
                     <option value="twinhouse">บ้านคู่</option>
@@ -61,7 +61,7 @@
 
                 <!-- 5 -->
                 <select id="input_bedroom" name="input_bedroom"
-                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="">ห้องนอน</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -72,7 +72,7 @@
                 </select>
                 <!-- 5 -->
                 <select id="input_bathroom" name="input_bathroom"
-                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="">ห้องน้ำ</option>
                     <option value="1">1</option>
                     <option value="2">2</option>

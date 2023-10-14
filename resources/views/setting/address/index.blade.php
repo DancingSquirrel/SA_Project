@@ -7,7 +7,7 @@
  <!-- start -->
  
      <div class="flex-shrink p-4 border-4 border-black w-full shadow-lg "> 
-         <div class="flex flex-col justify-center bg-white dark:bg-gray-800 rounded-lg h-full">
+         <div class="flex flex-col justify-center bg-white rounded-lg h-full">
              <div class="p-4 bg-white rounded-lg">
              <form action="#">
                  <div class="grid grid-cols-6 gap-6 font-poppin">
@@ -51,7 +51,7 @@
     </div>
 <!-- start -->
     <div class="flex-shrink p-4  border-4 border-black w-full shadow-lg"> 
-         <div class="flex flex-col justify-center bg-white dark:bg-gray-800 h-full ">
+         <div class="flex flex-col justify-center bg-white h-full ">
              <div class="p-4 bg-white rounded-lg">
              <form action="#">
                  <div class="grid grid-cols-6 gap-6 font-poppin">

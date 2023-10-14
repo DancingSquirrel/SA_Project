@@ -7,14 +7,14 @@
     <div class="flex flex-wrap flex-col">
 
 
-        <div class="m-8 bg-white rounded-lg shadow-lg ">
+        <div class="m-8 bg-white rounded-lg shadow-md m-3 ">
 
             <div class="flex flex-wrap flex-row mx-4">
                 <div class="flex-shrink max-w-full px-4 w-full">
                     <div class="md:flex md:justify-between">
                         <div>
                             <a href="{{route('admin.createRealEstate')}}"
-                                class="py-2 px-4 mb-3 block lg:inline-block text-center rounded leading-5 text-gray-100 bg-indigo-500 border border-indigo-500 hover:text-white hover:bg-indigo-600 hover:ring-0 hover:border-indigo-600 focus:bg-indigo-600 focus:border-indigo-600 focus:outline-none focus:ring-0">Add
+                                class="py-2 px-4 my-3 block lg:inline-block text-center rounded leading-5 text-gray-100 bg-indigo-500 border border-indigo-500 hover:text-white hover:bg-indigo-600 hover:ring-0 hover:border-indigo-600 focus:bg-indigo-600 focus:border-indigo-600 focus:outline-none focus:ring-0">Add
                                 new <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                                     class="inline-block ltr:ml-1 rtl:mr-1 bi bi-plus-lg" viewBox="0 0 16 16">
                                     <path
@@ -134,7 +134,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="javascript:;"
+                                                    <a href="#"
                                                         class="inline-block ltr:mr-2 rtl:ml-2 hover:text-red-500"
                                                         title="Delete">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -147,7 +147,7 @@
                                                             </path>
                                                         </svg>
                                                     </a>
-                                                    <a href="javascript:;"
+                                                    <a href="{{ route('admin.getViewEditRealEstate', ['realEstate' => $realEstate]) }}"
                                                         class="inline-block ltr:mr-2 rtl:ml-2 hover:text-green-500"
                                                         title="Edit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
