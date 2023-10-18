@@ -13,33 +13,26 @@
                 <div class="flex-shrink max-w-full px-4 w-full">
                     <div class="md:flex md:justify-between">
                         <div>
-                            <a href="{{route('admin.createUser')}}"
-                                class="py-2 px-4 my-3 block lg:inline-block text-center rounded leading-5 text-gray-100 bg-indigo-500 border border-indigo-500 hover:text-white hover:bg-indigo-600 hover:ring-0 hover:border-indigo-600 focus:bg-indigo-600 focus:border-indigo-600 focus:outline-none focus:ring-0">Add
-                                new <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
-                                    class="inline-block ltr:ml-1 rtl:mr-1 bi bi-plus-lg" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z">
+                            <a href="{{route('admin.createUser')}}" class="py-2 px-4 my-3 block lg:inline-block text-center rounded leading-5 text-gray-100 bg-indigo-500 border border-indigo-500 hover:text-white hover:bg-indigo-600 hover:ring-0 hover:border-indigo-600 focus:bg-indigo-600 focus:border-indigo-600 focus:outline-none focus:ring-0">Add
+                                new <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="inline-block ltr:ml-1 rtl:mr-1 bi bi-plus-lg" viewBox="0 0 16 16">
+                                    <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z">
                                     </path>
                                 </svg></a>
                         </div>
 
                         <div>
 
-                            <form action="{{ route('admin.staffList') }}" method="GET"
-                                class="dataTable-top flex flex-row justify-between m-5">
+                            <form action="{{ route('admin.staffList') }}" method="GET" class="dataTable-top flex flex-row justify-between m-5">
 
                                 <div class="flex justify-center p-3" id="bulk-actions">
 
                                 </div>
                                 <div class="flex justify-center p-3">
-                                    <input id="input_anything" name="input_anything"
-                                        class="dataTable-input bg-gray-200 px-3 py-2 rounded-md"
-                                        value="{{ $input_anything }}" placeholder="Search..." type="text">
+                                    <input id="input_anything" name="input_anything" class="dataTable-input bg-gray-200 px-3 py-2 rounded-md" value="{{ $input_anything }}" placeholder="Search..." type="text">
                                 </div>
 
                                 <div class="flex justify-center p-3">
-                                    <button type
-                                        class="p-2 border w-full rounded-md bg-gray-800 text-white">Search</button>
+                                    <button type class="p-2 border w-full rounded-md bg-gray-800 text-white">Search</button>
                                 </div>
                             </form>
 
@@ -52,35 +45,36 @@
 
 
 
-                            <div
-                                class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                                 <div class="dataTable-container">
-                                    <table
-                                        class="table-sorter table-bordered w-full ltr:text-left rtl:text-right text-gray-600 dataTable-table">
+                                    <table class="table-sorter table-bordered w-full ltr:text-left rtl:text-right text-gray-600 dataTable-table">
                                         <thead>
                                             <tr class="bg-gray-100">
 
-                                                <th data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">name</a>
+                                                <th class="text-center" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter mx-2">Name</a>
                                                 </th>
-                                                <th class="hidden lg:table-cell" data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">FirstName </a>
-                                                </th>
-                                                <th class="text-center" data-sortable="false">
-                                                    <p class="text-center dataTable-sorter mx-10">LastName</p>
+                                                <th class="hidden text-center lg:table-cell" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter mx-2">FirstName </a>
                                                 </th>
                                                 <th class="text-center" data-sortable="false">
-                                                    <p class="text-center dataTable-sorter mx-10">Role</p>
+                                                    <p class="text-center dataTable-sorter mx-2">LastName</p>
                                                 </th>
-                                                <th data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">PhoneNumber</a>
+                                                <th class="text-center" data-sortable="false">
+                                                    <p class="text-center dataTable-sorter mx-2">Role</p>
                                                 </th>
-                                                <th data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">Email</a>
+                                                <th class="text-center" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter mx-2">PhoneNumber</a>
+                                                </th>
+                                                <th class="text-center" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter mx-2">Email</a>
+                                                </th>
+                                                <th class="text-center" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter mx-4">Status</a>
                                                 </th>
 
                                                 <th class="text-center" data-sortable="false">
-                                                    <p class="text-center dataTable-sorter mx-10">Actions</p>
+                                                    <p class="text-center dataTable-sorter mx-5">Actions</p>
                                                 </th>
 
                                             </tr>
@@ -88,7 +82,7 @@
                                         <tbody>
                                             @foreach ($staffs as $staff)
                                             <tr>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="#">
                                                         <div class="flex flex-wrap flex-row items-center m-3 text-xs">
 
@@ -99,43 +93,63 @@
                                                         </div>
                                                     </a>
                                                 </td>
-                                                <td class="text-center hidden lg:table-cell">{{$staff->first_name}}
+                                                <td class="text-center hidden lg:table-cell text-xs">{{$staff->first_name}}
                                                 </td>
-                                                <td class="text-center">{{$staff->last_name}}</td>
-                                                <td class="text-center hidden lg:table-cell">
-                                                    {{$staff->role}}</td>
-                                                <td class="text-center hidden lg:table-cell">
-                                                    {{$staff->phone_number}}</td>
-                                                <td class="text-center hidden lg:table-cell">
-                                                    {{$staff->email}}</td>
-                                                <td class="text-center">
-                                                    <a href="javascript:;"
-                                                        class="inline-block ltr:mr-2 rtl:ml-2 hover:text-red-500"
-                                                        title="Delete">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
+                                                <td class="text-center text-xs">{{$staff->last_name}}</td>
+                                                <td class="text-center hidden lg:table-cell text-xs">
+                                                    {{$staff->role}}
+                                                </td>
+                                                <td class="text-center hidden lg:table-cell text-xs">
+                                                    {{$staff->phone_number}}
+                                                </td>
+                                                <td class="text-center hidden lg:table-cell text-xs">
+                                                    {{$staff->email}}
+                                                </td>
+                                                <td class="text-center hidden lg:table-cell text-xs">
+                                                    @if($staff->status =='online')
+                                                    <span class="text-sm px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full w-full">{{$staff->status}}</span>
+                                                    @else
+                                                    <span class="text-sm px-2 py-1 font-semibold leading-tight text-rose-700 bg-rose-100 rounded-full w-full">{{$staff->status}}</span>
+                                                    @endif
+                                                </td>
+                                                <td class="text-center text-xs">
+                                                    <a href="javascript:;" class="inline-block ltr:mr-2 rtl:ml-2 hover:text-red-500" title="Delete">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
                                                             </path>
-                                                            <path fill-rule="evenodd"
-                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
-                                                            </path>
-                                                        </svg>
-                                                    </a>
-                                                    <a href="javascript:;"
-                                                        class="inline-block ltr:mr-2 rtl:ml-2 hover:text-green-500"
-                                                        title="Edit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-pencil-square"
-                                                            viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
-                                                            </path>
-                                                            <path fill-rule="evenodd"
-                                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
+                                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
                                                             </path>
                                                         </svg>
                                                     </a>
+                                                    @if($staff->status == 'online')
+                                                    <a href="{{ route('admin.staffList.banned', ['user_id' => $staff->id]) }}" class="inline-block ltr:mr-2 rtl:ml-2 hover:bg-rose-500 hover:rounded-full" title="Banned">
+                                                        <svg fill="#000000" width="20px" height="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 296 296" xml:space="preserve">
+                                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <g>
+                                                                    <path d="M148,0C66.393,0,0,66.393,0,148s66.393,148,148,148s148-66.393,148-148S229.607,0,148,0z M148,266 c-65.065,0-118-52.935-118-118c0-25.468,8.208-50.862,24.67-72.118L220.117,241.33C200.214,256.745,175.174,266,148,266z M241.33,220.117L75.883,54.67C95.786,39.255,120.825,30,148,30c65.065,0,118,52.935,118,118 C266,173.469,257.792,198.861,241.33,220.117z"></path>
+                                                                    <path d="M148,239.215c11.371,0,22.254-2.087,32.293-5.889L62.674,115.706c-3.802,10.039-5.889,20.922-5.889,32.293 C56.785,198.376,97.623,239.215,148,239.215z"></path>
+                                                                    <path d="M148,56.785c-11.371,0-22.254,2.087-32.293,5.889l117.619,117.62c3.802-10.039,5.889-20.922,5.889-32.293 C239.215,97.623,198.377,56.785,148,56.785z"></path>
+                                                                </g>
+                                                            </g>
+                                                        </svg>
+                                                    </a>
+                                                    @else
+                                                    <a href="{{ route('admin.staffList.unbanned', ['user_id' => $staff->id]) }}" class="inline-block ltr:mr-2 rtl:ml-2 hover:text-green-500 hover:bg-green-500 hover:rounded-full" title="Edit">
+                                                        <svg fill="#000000" width="20px" height="20px" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" stroke="#000000">
+                                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <title></title>
+                                                                <g>
+                                                                    <path d="M58.3945,32.1563,42.9961,50.625l-5.3906-6.4629a5.995,5.995,0,1,0-9.211,7.6758l9.9961,12a5.9914,5.9914,0,0,0,9.211.0059l20.0039-24a5.9988,5.9988,0,1,0-9.211-7.6875Z"></path>
+                                                                    <path d="M48,0A48,48,0,1,0,96,48,48.0512,48.0512,0,0,0,48,0Zm0,84A36,36,0,1,1,84,48,36.0393,36.0393,0,0,1,48,84Z"></path>
+                                                                </g>
+                                                            </g>
+                                                        </svg>
+                                                    </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             @endforeach

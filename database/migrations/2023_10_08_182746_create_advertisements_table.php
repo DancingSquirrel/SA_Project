@@ -16,7 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(RealEstate::class);
             $table->string('name');
-            $table->string('URL');
+            $table->string('URL')->nullable();
+            $table->string('status');
             $table->date('ad_start')->nullable();
             $table->date('ad_expired')->nullable();
             $table->softDeletes();

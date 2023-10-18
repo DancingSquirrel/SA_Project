@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\DateRangeWithinOneYear;
 
-
 class RealEstateFormRequest extends FormRequest
 {
     /**
@@ -24,46 +23,20 @@ class RealEstateFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'address' => [
-                'required',
-                'max:255'
-            ],
-            'coordinates' => [
-                'required',
-                'string',
-                'max:22'
-            ],
-            'input_province' => [
-                'required'
-                
-            ],
-            'area' => [
-                'required',
-                'integer',
-            ],
-            'input_type_real_estate' => [
-                'required'
-            ],
-            'price' => [
-                'required',
-                'integer',
-            ],
-            'detail' => [
-                'required',
-                'string',
-                'max:200',
-            ],
-            'staff_id' => [
-                'required',
-            ],
-            'date_start' => [
-                'required', 
-                'date'
-            ],
-            'date_expired' => [
-                'required', 
-                'date', 
-                new DateRangeWithinOneYear($this->input('date_start'))],
+            'address' => ['required', 'max:255','min:5'],
+            'input_province' => ['required'],
+            'input_amphoe' => ['nullable'],
+            'input_tambon' => ['nullable'],
+            'area' => ['required', 'integer'],
+            'input_type_real_estate' => ['required'],
+            'input_bedroom' => ['nullable'],
+            'input_bathroom' => ['nullable'],
+            'price' => ['required', 'integer'],
+            'detail' => ['required', 'string', 'max:200'],
+            'staff_id' => ['required'],
+            'date_start' => ['required', 'date'],
+            'years_agreement' => ['required', 'integer'],
+            'input_images' => ['required']
         ];
     }
 }

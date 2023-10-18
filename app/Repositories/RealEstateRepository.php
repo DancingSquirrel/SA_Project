@@ -20,7 +20,6 @@ class RealEstateRepository
         $f = false ;
         $query = RealEstate::query();
 
-        // dd($realEstate);
 
         if ($input_province != null) {
             $query = $query->where('province', $input_province);
@@ -57,9 +56,9 @@ class RealEstateRepository
             
         }
         if ($f == false){
-            $realEstate = RealEstate::where('status', 'pubilc')->paginate(15);
+            $realEstate = RealEstate::where('status', 'public')->paginate(15);
         } else {
-            $realEstate = $query->paginate(15);
+            $realEstate = $query->where('status', 'public')->paginate(15);
         }
         // dd($realEstate);
         return $realEstate ;

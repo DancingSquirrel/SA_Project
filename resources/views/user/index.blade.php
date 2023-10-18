@@ -52,10 +52,10 @@
                 <select id="input_type_real_estate" name="input_type_real_estate"
                     class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="">ประเภท</option>
-                    <option value="house">บ้านเดี่ยว</option>
-                    <option value="twinhouse">บ้านคู่</option>
-                    <option value="townhouse">ทาวน์เฮาส์</option>
-                    <option value="land">ที่ดิน</option>
+                    <option value="บ้านเดี่ยว">บ้านเดี่ยว</option>
+                    <option value="บ้านแฝด">บ้านแฝด</option>
+                    <option value="ทาวน์เฮาส์">ทาวน์เฮาส์</option>
+                    <option value="ที่ดิน">ที่ดิน</option>
 
                 </select>
 
@@ -67,7 +67,7 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="4+">4+</option>
+                    
 
                 </select>
                 <!-- 5 -->
@@ -78,7 +78,7 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="4+">4+</option>
+                    
 
                 </select>
         </div>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\RealEstateRepository;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -30,6 +31,7 @@ class UserController extends Controller
         $lim_high = $request->query('lim_high') ;
 
         $realEstateModel = new RealEstateRepository;
+        
         $realEstateNew = $realEstateModel->getSearchRealEstate($request);
                 return view('user.index', [
                     'realEstateNew' => $realEstateNew,
@@ -129,4 +131,72 @@ class UserController extends Controller
         
         
     }
+    public function bannedStatusUser(int $user_id){
+        $user = User::where('id' , $user_id)->get()->first() ;
+        $user->status = 'banned';
+        $user->save();
+
+        return redirect()->back();
+    }
+    public function unbannedStatusUser(int $user_id){
+        $user = User::where('id' , $user_id)->get()->first() ;
+        $user->status = 'online';
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    public function getviewSettingUser(){
+        $user = Auth::user();
+        return view('setting.index', [
+            'user' => $user,
+            ]);
+    }
+    public function geteditviewSettingUser(){
+        $user = Auth::user();
+        return view('setting.editProfile', [
+            'user' => $user,
+            ]);
+    }
+    public function editUserInfo(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:30',
+            'first_name' => 'required|string|max:30',
+            'last_name' => 'required|string|max:30',
+            'phone_number' => 'required|string|digits:10',
+
+        ]);
+        $user_id = $request->get('user_id');
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $first_name = $request->get('first_name');
+        $last_name = $request->get('last_name');
+        $phone_number = $request->get('phone_number');
+        $user = User::where('id' , $user_id)->get()->first() ;
+        if ($user->name != $name) {
+            $user->name = $name;
+            $user->save();
+        }
+        if ($user->email != $email) {
+            $request->validate([
+                'email' => 'required|string|email|max:255|unique:' . User::class,
+            ]);
+            $user->email = $email;
+            $user->save();
+        }
+        if ($user->first_name != $first_name) {
+            $user->first_name = $first_name;
+            $user->save();
+        }
+        if ($user->last_name != $last_name) {
+            $user->last_name = $last_name;
+            $user->save();
+        }
+        if ($user->phone_number != $phone_number) {
+            $user->phone_number = $phone_number;
+            $user->save();
+        }
+        return redirect('setting/edit')->with('message', 'User edit successfully.');
+    }
+    
 }

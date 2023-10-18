@@ -14,6 +14,7 @@
                 <form action="{{route('admin.createUser.create')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="grid grid-cols-6 gap-6 font-poppin">
+                        
 
                         <div class="col-span-6 sm:col-span-3">
                             <div class="grid grid-cols-4 gap-6">
@@ -35,14 +36,14 @@
 
 
                         <div class="col-span-6 sm:col-span-3 grid grid-cols-3 gap-2 rounded">
-                            
-                            <div class="grid grid-cols-6 gap-6">
-                                <label for="role " class="block mb-2 text-lg font-medium sm:col-span-1 text-gray-900  w-full">Role</label>
+                            <div class="col-span-2 grid grid-cols-2">
+                            <label for="role " class="col-span-1 block mb-2 text-lg font-medium sm:col-span-1 text-gray-900  w-full">Role</label>
                                 @if($errors->first('role'))
-                                <div class="alert-danger sm:col-span-5 bg-white"><p class="text-xs text-rose-700">*{{$errors->first('role')}} </p></div>
+                                <p class="col-span-1 text-xs text-rose-700">*{{$errors->first('role')}} </p>
                                 @endif
-                            </div>
-                            <div></div>
+
+                                </div>
+                          
                             <div></div>
                             <!-- 1 -->
                             <select id="role" name="role"

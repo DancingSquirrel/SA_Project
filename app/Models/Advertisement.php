@@ -14,4 +14,14 @@ class Advertisement extends Model
         return $this-> belongsTo(RealEstate ::class);
     }
 
+
+    public function checkStatusAdvertisements(){
+        $advertisements = Advertisement::all();
+        foreach($advertisements as $advertisement){
+
+            dd($advertisement);
+
+        }
+    }
+
 }

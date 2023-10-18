@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(RealEstate::class);
             $table->string('type');
+            $table->integer('years_agreement');
             $table->date('date_start');
             $table->date('date_expired');
             $table->timestamps();

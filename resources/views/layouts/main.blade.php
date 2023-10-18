@@ -9,10 +9,14 @@
     <title>Larave Layout</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class=" bg-white font-sans antialiased">
+    @if(Auth::check())
+    @include('layouts.subviews.admin_navbar')
+    @else
     @include('layouts.subviews.navbar')
+    @endif
 
-    <main class="bg-gray-100 ">
+    <main class="min-h-screen bg-gray-100">
         @yield('content')
     </main>
     @include('layouts.subviews.footer')

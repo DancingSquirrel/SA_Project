@@ -102,7 +102,7 @@
                                                 <td class="text-center hidden lg:table-cell">
                                                     {{$realEstate->agreements()->get()->first()->date_expired}}</td>
                                                 <td class="text-center hidden lg:table-cell">
-                                                    @if($realEstate->status =='pubilc')
+                                                    @if($realEstate->status =='public')
                                                     <span
                                                         class="text-sm px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full w-full">{{$realEstate->status}}</span>
                                                     @elseif($realEstate->status =='in progress')

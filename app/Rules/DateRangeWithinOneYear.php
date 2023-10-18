@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class DateRangeWithinOneYear implements Rule
 {
-    protected $startDate;
+    private $startDate;
 
     public function __construct($startDate)
     {
@@ -16,15 +16,16 @@ class DateRangeWithinOneYear implements Rule
 
     public function passes($attribute, $value)
     {
-        $endDate = Carbon::parse($value);
+        // Convert the start and end dates to Carbon instances for comparison
         $startDate = Carbon::parse($this->startDate);
+        $endDate = Carbon::parse($value);
 
-        // ตรวจสอบว่า 'date_start' น้อยกว่า 'date_expired' และระยะเวลาระหว่างวันที่นี้และ 'date_expired' น้อยกว่าหรือเท่ากับ 1 ปี
-        return $startDate->lessThan($endDate) && $startDate->diffInYears($endDate) <= 1;
+        // Check if end date is within one year from the start date
+        return $endDate->diffInMonths($startDate) <= 12;
     }
 
     public function message()
     {
-        return 'วันที่เริ่มต้นต้องน้อยกว่าวันที่หมดอายุและระยะเวลาระหว่างวันที่นี้และวันที่หมดอายุต้องไม่เกิน 1 ปี.';
+        return 'The :attribute must be within one year from the start date.';
     }
 }

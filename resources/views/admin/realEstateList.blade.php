@@ -24,7 +24,9 @@
                         </div>
 
                         <div>
-
+                            @if(session('message'))
+                                <h4 class="text-roes-900"> {{session('message') }}</h4>
+                            @endif
                             <form action="{{ route('admin.realEstateList') }}" method="GET" class="dataTable-top flex flex-row justify-between m-5">
                             
                                 <div class="flex justify-center p-3" id="bulk-actions">
@@ -32,7 +34,7 @@
                                         <select id="input_status" name="input_status"
                                             class="inline-block leading-5 relative  px-5 py-2 ltr:pl-3 ltr:pr-8 rtl:pr-3 rtl:pl-8 mx-1 rounded bg-gray-100 border border-gray-200 overflow-x-auto focus:outline-none focus:border-gray-300 focus:ring-0 select-caret appearance-none">
                                             <option value="">Action</option>
-                                            <option value="pubilc">Pubilc</option>
+                                            <option value="public">Public</option>
                                             <option value="private">Private</option>
                                             <option value="in progress">In progress</option>
                                             <option value="complete">Complete</option>
@@ -68,29 +70,29 @@
                                         <thead>
                                             <tr class="bg-gray-100">
 
-                                                <th data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">Address</a>
+                                                <th class="text-center" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter text-xs mx-2">Address</a>
                                                 </th>
-                                                <th class="hidden lg:table-cell" data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">Province </a>
-                                                </th>
-                                                <th class="text-center" data-sortable="false">
-                                                    <p class="text-center dataTable-sorter mx-10">Amphoe</p>
-                                                </th>
-                                                <th data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">Price</a>
-                                                </th>
-                                                <th data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-5">Staff</a>
-                                                </th>
-                                                <th class="hidden lg:table-cell" data-sortable="">
-                                                    <a href="#" class="dataTable-sorter text-xs mx-5">Contract Expires Date</a>
-                                                </th>
-                                                <th class="hidden lg:table-cell" data-sortable="">
-                                                    <a href="#" class="dataTable-sorter mx-10">Status</a>
+                                                <th class="text-center hidden lg:table-cell" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter text-xs mx-2">Province </a>
                                                 </th>
                                                 <th class="text-center" data-sortable="false">
-                                                    <p class="text-center dataTable-sorter mx-10">Actions</p>
+                                                    <p class="text-center dataTable-sorter text-xs mx-2">Amphoe</p>
+                                                </th>
+                                                <th class="text-center" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter text-xs  mx-5">Price</a>
+                                                </th>
+                                                <th class="text-center" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter text-xs mx-5">Staff</a>
+                                                </th>
+                                                <th class="text-center hidden lg:table-cell" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter text-xs mx-2">ContractExpiresDate</a>
+                                                </th>
+                                                <th class="text-center hidden lg:table-cell" data-sortable="">
+                                                    <a href="#" class="dataTable-sorter text-xs mx-8">Status</a>
+                                                </th>
+                                                <th class="text-center" data-sortable="false">
+                                                    <p class="text-center dataTable-sorter  text-xs mx-5">Actions</p>
                                                 </th>
 
                                             </tr>
@@ -99,27 +101,27 @@
                                             @foreach ($realEstates as $realEstate)
                                             <tr>
                                                 <td>
-                                                    <a href="#">
+                                                <a href="{{ route('realEstate', ['realEstate' => $realEstate]) }}">
                                                         <div class="flex flex-wrap flex-row items-center m-3 text-xs">
 
-                                                            <div class="leading-5 flex-1 ltr:ml-2 rtl:mr-2 mb-1">
+                                                            <div class="text-center leading-5 flex-1 ltr:ml-2 rtl:mr-2 mb-1">
                                                                 {{$realEstate->address}}
 
                                                             </div>
                                                         </div>
                                                     </a>
                                                 </td>
-                                                <td class="text-center hidden lg:table-cell">{{$realEstate->province}}
+                                                <td class="text-center hidden lg:table-cell text-xs">{{$realEstate->province}}
                                                 </td>
-                                                <td class="text-center">{{$realEstate->amphoe}}</td>
-                                                <td class="text-center hidden lg:table-cell">
+                                                <td class="text-center text-xs">{{$realEstate->amphoe}}</td>
+                                                <td class="text-center hidden lg:table-cell text-xs">
                                                     {{number_format($realEstate->getPrice($realEstate))}}</td>
-                                                <td class="text-center hidden lg:table-cell">
+                                                <td class="text-center hidden lg:table-cell text-xs">
                                                     {{$realEstate->user()->get()->first()->name}}</td>
-                                                <td class="text-center hidden lg:table-cell">
+                                                <td class="text-center hidden lg:table-cell text-xs">
                                                     {{$realEstate->agreements()->get()->first()->date_expired}}</td>
-                                                <td class="text-center hidden lg:table-cell">
-                                                    @if($realEstate->status =='pubilc')
+                                                <td class="text-center hidden lg:table-cell text-xs">
+                                                    @if($realEstate->status =='public')
                                                     <span
                                                         class="text-sm px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full w-full">{{$realEstate->status}}</span>
                                                     @elseif($realEstate->status =='in progress')
@@ -134,7 +136,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#"
+                                                    <a href="{{ route('admin.realEstateList.delete', ['realEstate' => $realEstate]) }}"
                                                         class="inline-block ltr:mr-2 rtl:ml-2 hover:text-red-500"
                                                         title="Delete">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

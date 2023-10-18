@@ -18,14 +18,10 @@ class RealEstateFactory extends Factory
      */
     public function definition(): array
     {
-        $type = ["house","townhouse","land"];
-        $room = ["1","2","3","4","4+"];
-        $status = ["pubilc","private","in progress","complete"];
+        $type = ["บ้านเดี่ยว","บ้านแฝด","ทาวน์เฮาส์"];
+        $room = ["1","2","3","4"];
+        $status = ["public","private","in progress","complete"];
         $x = random_int(1,7493);
-        $a = (string) rand(10, 99);
-        $b = (string) rand(100000, 999999);
-        $c = (string) rand(10, 99);
-        $d = (string) rand(100000, 999999);
         return [
             
             'user_id' => random_int(1,6),
@@ -35,9 +31,9 @@ class RealEstateFactory extends Factory
             'province' => Tambon::find($x)->province,
             'amphoe' => Tambon::find($x)->amphoe,
             'tambon' => Tambon::find($x)->tambon,
-            'coordinates' => "$a.$b, $c.$d",
             'area' => rand(15,200),
             'detail' => "dddddddddddddddddddddddddddd",
+            
             'bedroom' => $room[array_rand($room)],
             'bathroom' =>  $room[array_rand($room)]
         ];

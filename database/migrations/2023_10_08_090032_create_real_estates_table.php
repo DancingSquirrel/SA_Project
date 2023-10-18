@@ -27,10 +27,9 @@ return new class extends Migration
             $table->string('amphoe')->nullable();
             $table->string('tambon')->nullable();
             $table->double('area');
-            $table->string('coordinates')->unique();
             $table->string('detail');
-            $table->string('bedroom');
-            $table->string('bathroom');
+            $table->string('bedroom')->nullable();
+            $table->string('bathroom')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

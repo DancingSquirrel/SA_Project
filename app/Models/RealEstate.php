@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use App\Models\ImageRealEstate;
 use Illuminate\Support\Collection as SupportCollection;
 use Ramsey\Collection\Collection as CollectionCollection;
 
@@ -38,7 +39,7 @@ class RealEstate extends Model
 
     
     public function getRealEstate() {
-        return RealEstate::orderBy('created_at', 'desc')->where('status','pubilc');
+        return RealEstate::orderBy('created_at', 'desc')->where('status','public');
     }
 
 
@@ -48,33 +49,34 @@ class RealEstate extends Model
         $price = $quotaPrice->price;
         return $price;
     }
+    public function getCountPrice($realEstate){
+        $id = $realEstate->id;
+        $quotaPrice = QuotaPrice::orderBy('count', 'desc')->where('real_estate_id', $id)->firstOrFail();
+        $price = $quotaPrice->count;
+        return $price;
+    }
+    public function getYearAgreementRealEstate(RealEstate $realEstate){
+        $name =  $realEstate->agreements()->get()->first()->years_agreement;
+        return $name;
+    }
     
 
-    public function getImageRealEstate(RealEstate $realEstate){
-        $id = $realEstate->id;
-        $imagepath = ImageRealEstate::where('real_estate_id', $id)->firstOrFail();
-        $path = $imagepath->image_path;
-        return $path;
-    }
-    public function getAllImagePathRealEstate(RealEstate $realEstate){
-        $image_paths = ImageRealEstate::where('real_estate_id', $realEstate->id)->get();
-        return response()->json($image_paths);
-    }
 
     public function getStaffNameRealEstate(RealEstate $realEstate){
         $name =  $realEstate->user()->get()->first()->name;
         return $name;
     }
+   
 
     public function getAgreementStart(RealEstate $realEstate){
         $id = $realEstate->id;
-        $agreement = Agreement::where('real_estate_id', $id)->firstOrFail();
+        $agreement = Agreement::orderBy('date_start', 'desc')->where('real_estate_id', $id)->firstOrFail();
         $date = $agreement->date_start;
         return $date;
     }
     public function getAgreementExpired(RealEstate $realEstate){
         $id = $realEstate->id;
-        $agreement = Agreement::where('real_estate_id', $id)->firstOrFail();
+        $agreement = Agreement::orderBy('date_start', 'desc')->where('real_estate_id', $id)->firstOrFail();
         $date = $agreement->date_expired;
         return $date;
     }
@@ -89,7 +91,7 @@ class RealEstate extends Model
     //     $lim_low = $request['lim_low'] ?? "";
     //     $lim_high = $request['lim_high'] ?? "";
     //     $f = false ;
-    //     $realEstate = RealEstate::where('status','pubilc')->get();
+    //     $realEstate = RealEstate::where('status','public')->get();
 
     //     // dd($realEstate);
 
@@ -128,7 +130,7 @@ class RealEstate extends Model
             
     //     }
     //     if ($f == false){
-    //         $realEstate = RealEstate::where('status','pubilc');
+    //         $realEstate = RealEstate::where('status','public');
     //     }
     //     dd($realEstate);
     //     return $realEstate ;
@@ -159,5 +161,7 @@ class RealEstate extends Model
 
         return $realEstate ;
     }
+
+    
     
 }
