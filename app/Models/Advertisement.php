@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Advertisement extends Model
@@ -18,10 +20,17 @@ class Advertisement extends Model
     public function checkStatusAdvertisements(){
         $advertisements = Advertisement::all();
         foreach($advertisements as $advertisement){
-
-            dd($advertisement);
+                if($advertisement->ad_expired < Carbon::now() )
+                    {
+                        $advertisement->status = "unsuccess";
+                        $advertisement->URL = null;
+                        $advertisement->ad_start = null;
+                        $advertisement->ad_expired = null;
+                        $advertisement->save();
+                    }
 
         }
     }
+
 
 }

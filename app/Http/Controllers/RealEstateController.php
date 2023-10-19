@@ -29,7 +29,9 @@ class RealEstateController extends Controller
         return view('realEstate', ['realEstate' => $realEstate]);
     }
     public function showRealEstate(Request $request)
-    {  
+    {
+        $realEstate = new RealEstate;
+        $un = $realEstate->checkAgreementRealEstate();
         $query = RealEstate::query();
         $input_status = $request->query('input_status');
         $input_anything = $request->query('input_anything');
@@ -52,10 +54,24 @@ class RealEstateController extends Controller
     }
     public function popAllPromoteList(Request $request)
     {
+        $advertisement = new Advertisement();
+        $as = $advertisement->checkStatusAdvertisements();
         $query = RealEstate::query();
+        $status = $request->query('status');
         $input_anything = $request->query('input_anything');
         if ($input_anything) {
             $query = $query->where('address', 'LIKE', "%$input_anything%");
+        }
+        if ($status == "unsuccess") {
+            $ads = Advertisement::where('status', "unsuccess")->get();
+            $realEstateIds = $ads->pluck('real_estate_id')->toArray();
+            $query->whereIn('id', $realEstateIds);
+        }
+
+        if ($status == "success") {
+            $ads = Advertisement::where('status', "unsuccess")->get();
+            $realEstateIds = $ads->pluck('real_estate_id')->toArray();
+            $query->whereNotIn('id', $realEstateIds);
         }
         $realEstates = $query->paginate(15);
 
@@ -64,6 +80,9 @@ class RealEstateController extends Controller
             'input_anything' => $input_anything,
         ]);
     }
+
+
+
 
     public function getViewCreateRealEstate()
     {
@@ -238,7 +257,7 @@ class RealEstateController extends Controller
         $bedroom =  $request['input_bedroom']; //*
         $bathroom =  $request['input_bathroom']; //*
         $detail =  $request['detail']; //*
-        $status = 'public';
+        $status = $request['status'];
 
         // quotaprice
         $price =  $request['price'];
@@ -267,8 +286,10 @@ class RealEstateController extends Controller
             $quotaprice->save();
         };
         if ($date_start != $realEstate->getAgreementStart($realEstate)) {
+            $agreement = $realEstate->agreements()->where('status', 'enable')->get()->first();
+            $agreement->status = "disable";
             $agreement = new Agreement();
-            $agreement->type = $type;
+            $agreement->status = "enable";
             $agreement->date_start = $date_start;
             $agreement->years_agreement = $years_agreement;
             $agreement->date_expired = $date_start->addYear($years_agreement);
@@ -345,97 +366,103 @@ class RealEstateController extends Controller
         return redirect()->back();
     }
 
-    public function getViewEditPromote(RealEstate $realEstate){
+    public function getViewEditPromote(RealEstate $realEstate)
+    {
 
         return view('admin.editPromote', [
             'realEstate' => $realEstate,
         ]);
     }
 
-    public function updatePromoteRealEstate(Request $request ,int $realEstate_id){
+    public function updatePromoteRealEstate(Request $request, int $realEstate_id)
+    {
 
         // url_facbook
         $realEstate = RealEstate::find($realEstate_id);
-            $ad_facbook= $realEstate->advertisements()->where('name', 'facbook')->get()->first();
+        $ad_facbook = $realEstate->advertisements()->where('name', 'facbook')->get()->first();
         $url_facbook = $request['url_facbook'];
         $ad_start_facbook = $request['ad_start_facbook'];
         $ad_expired_facbook = $request['ad_expired_facbook'];
-        if ($ad_facbook->URL != $url_facbook ) {
-            
+        if ($ad_facbook->URL != $url_facbook) {
+
             $ad_facbook->URL = $url_facbook;
             if ($ad_start_facbook && $ad_expired_facbook) {
                 $ad_facbook->ad_start = $ad_start_facbook;
+                $ad_facbook->status = "success";
                 $ad_facbook->ad_expired = $ad_expired_facbook;
                 $ad_facbook->save();
             }
-            if($ad_start_facbook == null) {
+            if ($ad_start_facbook == null) {
                 throw ValidationException::withMessages(['error_date_start_facbook' => 'Date start facbook does not exist']);
             }
-            if($ad_expired_facbook == null) {
+            if ($ad_expired_facbook == null) {
                 throw ValidationException::withMessages(['error_date_expired_facbook' => 'Date expired facbook does not exist']);
             }
         }
         // url_dehome
         $realEstate = RealEstate::find($realEstate_id);
-        $ad_dehome= $realEstate->advertisements()->where('name', 'dehome')->get()->first();
+        $ad_dehome = $realEstate->advertisements()->where('name', 'dehome')->get()->first();
         $url_dehome = $request['url_dehome'];
         $ad_start_dehome = $request['ad_start_dehome'];
         $ad_expired_dehome = $request['ad_expired_dehome'];
         if ($ad_dehome->URL != $url_dehome) {
-            
+
             $ad_dehome->URL = $url_dehome;
             if ($ad_start_dehome && $ad_expired_dehome) {
                 $ad_dehome->ad_start = $ad_start_dehome;
+                $ad_dehome->status = "success";
                 $ad_dehome->ad_expired = $ad_expired_dehome;
                 $ad_dehome->save();
             }
-            if($ad_start_dehome == null) {
+            if ($ad_start_dehome == null) {
                 throw ValidationException::withMessages(['error_date_start_dehome' => 'Date start dehome does not exist']);
             }
-            if($ad_expired_dehome == null) {
+            if ($ad_expired_dehome == null) {
                 throw ValidationException::withMessages(['error_date_expired_dehome' => 'Date expired dehome does not exist']);
             }
         }
         // url_shopee
         $realEstate = RealEstate::find($realEstate_id);
-        $ad_shopee= $realEstate->advertisements()->where('name', 'shopee')->get()->first();
+        $ad_shopee = $realEstate->advertisements()->where('name', 'shopee')->get()->first();
         $url_shopee = $request['url_shopee'];
         $ad_start_shopee = $request['ad_start_shopee'];
         $ad_expired_shopee = $request['ad_expired_shopee'];
         if ($ad_shopee->URL != $url_shopee) {
-            
+
             $ad_shopee->URL = $url_shopee;
             if ($ad_start_shopee && $ad_expired_shopee) {
                 $ad_shopee->ad_start = $ad_start_shopee;
+                $ad_shopee->status = "success";
                 $ad_shopee->ad_expired = $ad_expired_shopee;
                 $ad_shopee->save();
             }
-            if($ad_start_shopee == null) {
+            if ($ad_start_shopee == null) {
                 throw ValidationException::withMessages(['error_date_start_shopee' => 'Date start shopee does not exist']);
             }
-            if($ad_expired_shopee == null) {
+            if ($ad_expired_shopee == null) {
                 throw ValidationException::withMessages(['error_date_expired_shopee' => 'Date expired shopee does not exist']);
             }
         }
 
         //url_google
         $realEstate = RealEstate::find($realEstate_id);
-        $ad_google= $realEstate->advertisements()->where('name', 'google')->get()->first();
+        $ad_google = $realEstate->advertisements()->where('name', 'google')->get()->first();
         $url_google = $request['url_google'];
         $ad_start_google = $request['ad_start_google'];
         $ad_expired_google = $request['ad_expired_google'];
         if ($ad_google->URL != $url_google) {
-            
+
             $ad_google->URL = $url_google;
             if ($ad_start_google && $ad_expired_google) {
                 $ad_google->ad_start = $ad_start_google;
+                $ad_google->status = "success";
                 $ad_google->ad_expired = $ad_expired_google;
                 $ad_google->save();
             }
-            if($ad_start_google == null) {
+            if ($ad_start_google == null) {
                 throw ValidationException::withMessages(['error_date_start_google' => 'Date start google does not exist']);
             }
-            if($ad_expired_google == null) {
+            if ($ad_expired_google == null) {
                 throw ValidationException::withMessages(['error_date_expired_google' => 'Date expired google does not exist']);
             }
         }
@@ -444,7 +471,7 @@ class RealEstateController extends Controller
     }
 
 
-    
+
 
 
 

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use App\Models\ImageRealEstate;
+use Carbon\Carbon;
 use Illuminate\Support\Collection as SupportCollection;
 use Ramsey\Collection\Collection as CollectionCollection;
 
@@ -161,7 +162,21 @@ class RealEstate extends Model
 
         return $realEstate ;
     }
-
     
+
+    public function checkAgreementRealEstate(){
+        $realEstates = RealEstate::all();
+        $real_estate_ids = Agreement::where('status' , 'enable')->where('date_expired' ,'<' , Carbon::now())->get()->pluck('real_estate_id');
+        foreach($real_estate_ids as $real_estate_id){
+            $realEstate = RealEstate::find($real_estate_id);
+            $realEstate->status = "private";
+            $realEstate->save();
+        }
+        $agreements = Agreement::where('status' , 'enable')->where('date_expired' ,'<' , Carbon::now())->get();
+        foreach($agreements as $agreement){
+            $agreement->status = "disable";
+            $agreement->save();
+        }
+    }
     
 }

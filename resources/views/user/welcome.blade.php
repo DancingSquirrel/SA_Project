@@ -25,7 +25,7 @@
             class="sm:col-span-1 px-14 py-3 relative rounded group overflow-hidden font-medium bg-red-50 text-red-900 inline-block">
             <span
                 class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-gray-700 group-hover:h-full opacity-90"></span>
-            <span class="relative group-hover:text-white">ติดต่อ สอบถามได้ที่นี่</span>
+            <span class="relative group-hover:text-white text-center"><h5>ติดต่อ สอบถามได้ที่นี่</h5></span>
         </a>
     </div>
     <div class="flex flex-col justify-center items-center">

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('agreements', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(RealEstate::class);
-            $table->string('type');
+            $table->string('status');
             $table->integer('years_agreement');
             $table->date('date_start');
             $table->date('date_expired');

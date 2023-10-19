@@ -1,4 +1,4 @@
-<div role="listitem" class="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+<div role="listitem" class="relative">
     <div class="rounded overflow-hidden shadow-md bg-white">
         <div class="absolute -mt-20 w-full flex justify-center">
             <div class="h-32 w-32">

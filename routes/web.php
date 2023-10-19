@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(\App\Http\Middleware\CheckBanned::class, 'auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -51,6 +51,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/editRealEstate/{realEstate}/edit', [RealEstateController::class, 'getViewEditRealEstate'])->name('admin.getViewEditRealEstate');
     Route::put('/admin/editRealEstate/{realEstate}', [RealEstateController::class, 'updateRealEstate'])->name('admin.updateRealEstate');
     Route::get('/admin/editRealEstate/{image_id}', [RealEstateController::class, 'deleteImagesRealEstate'])->name('admin.updateRealEstate.delete');
+
+
+    // profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // setting
+    Route::get('/setting', [UserController::class, 'getviewSettingUser'])->name('setting.index');
+    Route::get('/setting/edit', [UserController::class, 'getEditviewSettingUser'])->name('setting.editProfile');
+    Route::put('/setting/edit', [UserController::class, 'editUserInfo'])->name('setting.editProfile.edit');
+
+    Route::get('/setting/changePassword', [UserController::class, 'getchangePasswordviewSettingUser'])->name('setting.changePassword');
+    Route::put('/setting/changePassword/edit/password', [UserController::class, 'editUserPassword'])->name('setting.changePassword.edit');
 });
 
 Route::get('/info', function () {
@@ -63,21 +76,7 @@ Route::get('/realEstate/{realEstate}', [RealEstateController::class, 'selectReal
 
 
 
-// profile
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// setting
-Route::get('/setting', [UserController::class, 'getviewSettingUser'])->name('setting.index');
-Route::get('/setting/edit', [UserController::class, 'geteditviewSettingUser'])->name('setting.editProfile');
-Route::put('/setting/edit', [UserController::class, 'editUserInfo'])->name('setting.editProfile.edit');
 
-Route::get('/setting/changePassword', function () {
-    return view('setting.changePassword');
-})->name('setting.changePassword');
-Route::get('/setting/changePassword', function () {
-    return view('setting.changePassword');
-})->name('setting.changePassword');
 
 
 require __DIR__ . '/auth.php';

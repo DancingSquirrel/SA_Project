@@ -168,7 +168,7 @@
                             <div class="col-span-6 sm:col-span-6"></div>
                         </div>
 
-                        <a href="{{route('admin.createRealEstate')}}"
+                        <a href="{{route('admin.createUser')}}"
                             class="col-span-6 sm:col-span-1 relative px-7 py-3 m-3 overflow-hidden font-medium text-red-600 bg-red-100 border border-red-100 rounded-lg shadow-inner group">
                             <span
                                 class="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-red-600 group-hover:w-full ease"></span>

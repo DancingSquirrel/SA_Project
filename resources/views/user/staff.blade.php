@@ -9,8 +9,7 @@
         <p class="text-xl">รายชื่อพนักงาน</p>
     </div>
     <div class="container mx-auto">
-        <div role="list" aria-label="Behind the scenes People "
-            class="lg:flex md:flex sm:flex items-center xl:justify-between flex-wrap md:justify-around sm:justify-around lg:justify-around">
+    <div class="grid md:grid-cols-3 gap-y-24 gap-x-4 justify-center p-5">
             @foreach ($staffs as $staff)
             @include('layouts.itemStaff')
 

@@ -75,8 +75,8 @@ class RealEstateSeeder extends Seeder
 
             $agreement = new Agreement();
             $agreement->real_estate_id = $f;
-            $agreement->type = "consignment";
             $agreement->years_agreement = 2;
+            $agreement->status = "enable";
             $agreement->date_start = fake()->dateTimeBetween('-60 days','now');
             $dateStart = Carbon::parse($agreement->date_start);
             $agreement->date_expired = $dateStart->addYear(2);

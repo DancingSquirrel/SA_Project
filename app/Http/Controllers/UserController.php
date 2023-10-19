@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\RealEstateRepository;
 use Illuminate\Database\Eloquent\Collection;
@@ -17,6 +18,8 @@ use Illuminate\Database\Eloquent\Collection;
 class UserController extends Controller
 {
     public function popRealEstate(Request $request){
+        $realEstate = new RealEstate;
+        $un = $realEstate->checkAgreementRealEstate();
         $provinces = Tambon::select('province')->distinct()->get();
         $amphoes = Tambon::select('amphoe')->distinct()->get();
         $tambons = Tambon::select('tambon')->distinct()->get();
@@ -152,9 +155,15 @@ class UserController extends Controller
             'user' => $user,
             ]);
     }
-    public function geteditviewSettingUser(){
+    public function getEditviewSettingUser(){
         $user = Auth::user();
         return view('setting.editProfile', [
+            'user' => $user,
+            ]);
+    }
+    public function getchangePasswordviewSettingUser(){
+        $user = Auth::user();
+        return view('setting.changePassword', [
             'user' => $user,
             ]);
     }
@@ -198,5 +207,29 @@ class UserController extends Controller
         }
         return redirect('setting/edit')->with('message', 'User edit successfully.');
     }
-    
+
+    public function editUserPassword(Request $request){
+        $user_id = $request->get('user_id');
+        $user = User::where('id' , $user_id)->get()->first() ;
+        $curent_password = $request->get('curent_password');
+        $new_password = $request->get('new_password');
+        $confirm_password = $request->get('confirm_password'); 
+           if(password_verify($curent_password, $user->password) == false){
+                throw ValidationException::withMessages(['curent_password' => 'Curent password not correct']);
+           }
+           else{
+            $request->validate([
+                'new_password' => 'required|string|max:30|min:8',
+                'confirm_password' => 'required|string|max:30|min:8',
+            ]);
+            if ($new_password != $confirm_password) {
+                throw ValidationException::withMessages(['confirm_password' => 'Confirm password did not match ']);
+            }
+            else {
+                $user->password = Hash::make($new_password);
+                $user->save();
+            }
+           }
+           return redirect('setting/changePassword')->with('message', 'User Change Password successfully.');
+        }
 }

@@ -3,7 +3,7 @@
 @section('content')
 <div class="h-96 flex items-center justify-center ">
     <div class="w-full h-full ">
-        <img src="https://www.iconhome.co.th/frontend/assets/img/about/abt1.jpg" alt="">
+        <img class="object-none object-center h-96 w-full" src="https://www.iconhome.co.th/frontend/assets/img/about/abt1.jpg" alt="">
     </div>
 </div>
 <div class="h-96 flex items-center justify-center ">
@@ -35,7 +35,7 @@
             <h1 class="text-2xl text-gray-200 tracking-wider font-semibold mt-2" style="z-index: 3;">
                 2.เรามุ่งหน้าก้าวนําการตลาดยุคใหม่
             </h1>
-            <h1 class="text-xl text-gray-200 tracking-wider " style="z-index: 2;">
+            <h1 class="text-xl text-gray-200 tracking-wider mb-3" style="z-index: 2;">
                 เราให้ความสำคัญกับสื่อโฆษณาออนไลน์เป็นอันดับหนึ่ง และก้าวพัฒนาสื่อโฆษณาแพลทฟอร์มใหม่ตลอดเวลา</h1>
             <h1 class="text-2xl text-gray-200 tracking-wider font-semibold mt-2" style="z-index: 3;">
                 3.เรามุ่งนำพัฒนาบุคคลากรคุณภาพ
