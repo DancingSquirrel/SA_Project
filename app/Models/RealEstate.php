@@ -165,6 +165,29 @@ class RealEstate extends Model
     
 
     public function checkAgreementRealEstate(){
+        // ปิดrealEstate ที่staffโดนแบน
+        $users = User::all();
+        $users = $users->where('status', "banned")->pluck('id');
+        $realEstates = RealEstate::all();
+        $statuses = ["public","private"];
+        $realEstates = $realEstates->whereIn('status' , $statuses);
+        $realEstates = $realEstates->whereIn('user_id' , $users);
+        foreach($realEstates as $realEstate){
+            $realEstate->status = "private";
+            $realEstate->save();
+        }
+        // เปิดrealEstate ที่staffโดนแบน
+        $users = User::all();
+        $users = $users->where('status', "online")->pluck('id');
+        $realEstates = RealEstate::all();
+        $statuses = ["public","private"];
+        $realEstates = $realEstates->whereIn('status' , $statuses);
+        $realEstates = $realEstates->whereIn('user_id' , $users);
+        foreach($realEstates as $realEstate){
+            $realEstate->status = "public";
+            $realEstate->save();
+        }
+        // หมดสัญญา
         $realEstates = RealEstate::all();
         $real_estate_ids = Agreement::where('status' , 'enable')->where('date_expired' ,'<' , Carbon::now())->get()->pluck('real_estate_id');
         foreach($real_estate_ids as $real_estate_id){
@@ -177,6 +200,13 @@ class RealEstate extends Model
             $agreement->status = "disable";
             $agreement->save();
         }
+        // ลบstaff
+        $realEstates = RealEstate::where('user_id' , null)->get();
+        foreach($realEstates as $realEstate){
+            $realEstate->status = "private";
+            $realEstate->save();
+        }
     }
+    
     
 }

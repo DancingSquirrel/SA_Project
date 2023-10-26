@@ -116,17 +116,17 @@
                                 class="peer w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 name="password" id="password" type="text" />
                         </div>
-                        <div class="col-span-6 row-span-3 sm:col-span-2 mt-2">
+                        <div class="col-span-6 row-span-3 sm:col-span-3 mt-2">
 
                             <div class="flex items-center space-x-6">
-                                <div class="shrink-0">
+                                <div class="shrink-0 col-span-1">
                                     <img id='preview_img'  class="h-44 w-44 object-cover rounded-full"
                                         src="https://imgclothing.com.co/cdn/shop/files/Logo_IMG_invertido-02_2551x.png?v=1668785641"
                                         alt="Current profile photo" />
                                 </div>
-                                <label class="block">
+                                <label class="block col-span-2 ">
                                     <span class="sr-only">Choose profile photo</span>
-                                    <div>
+                                    <div class="w-full">
                                     <input type="file" name='image' onchange="loadFile(event)" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold

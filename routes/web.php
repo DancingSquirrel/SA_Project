@@ -16,10 +16,12 @@ use App\Http\Controllers\UploadController;
 |
 */
 
+Route::get('/', function () {
+    return view('user.welcome');
+})->name('user.welcome');
 Route::get('/user/welcome', function () {
     return view('user.welcome');
 })->name('user.welcome');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -35,6 +37,7 @@ Route::middleware(\App\Http\Middleware\CheckBanned::class, 'auth')->group(functi
 
     Route::get('/admin/staffList', [UserController::class, 'popAllStaffList'])->name('admin.staffList');
     Route::get('/admin/staffList/{user_id}/banned', [UserController::class, 'bannedStatusUser'])->name('admin.staffList.banned');
+    Route::get('/admin/staffList/{user_id}/delete', [UserController::class, 'deleteStatusUser'])->name('admin.staffList.delete');
     Route::get('/admin/staffList/{user_id}/unbanned', [UserController::class, 'unbannedStatusUser'])->name('admin.staffList.unbanned');
 
     Route::get('/admin/realEstateExpires', [RealEstateController::class, 'showRealEstatePrivate'])->name('admin.realEstateExpires');
@@ -52,11 +55,11 @@ Route::middleware(\App\Http\Middleware\CheckBanned::class, 'auth')->group(functi
     Route::put('/admin/editRealEstate/{realEstate}', [RealEstateController::class, 'updateRealEstate'])->name('admin.updateRealEstate');
     Route::get('/admin/editRealEstate/{image_id}', [RealEstateController::class, 'deleteImagesRealEstate'])->name('admin.updateRealEstate.delete');
 
-
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     // setting
     Route::get('/setting', [UserController::class, 'getviewSettingUser'])->name('setting.index');
     Route::get('/setting/edit', [UserController::class, 'getEditviewSettingUser'])->name('setting.editProfile');

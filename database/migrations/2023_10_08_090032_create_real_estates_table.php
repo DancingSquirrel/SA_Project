@@ -19,7 +19,7 @@ return new class extends Migration
     {
         Schema::create('real_estates', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class)->nullable();
             $table->string('type');
             $table->string('status');
             $table->string('address');

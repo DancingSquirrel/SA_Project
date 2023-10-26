@@ -1,5 +1,5 @@
 <!-- item -->
-<div class="relative w-full overflow-hidden rounded-lg bg-white shadow-md hover:scale-110 duration-300">
+<div class="relative w-full overflow-hidden rounded-lg bg-white shadow-md hover:scale-110 duration-300 animate-flip-up">
     <a href="{{ route('realEstate', ['realEstate' => $realEstate]) }}">
         <img class="object-none object-center h-80 w-full" src="{{ asset($realEstate->getImage_paths($realEstate)->firstOrFail()) }}" />
     </a>

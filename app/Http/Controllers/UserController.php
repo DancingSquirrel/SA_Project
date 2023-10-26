@@ -148,6 +148,19 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+    public function deleteStatusUser(int $user_id){
+        $user = User::where('id' , $user_id)->get()->first() ;
+        $realEstates = RealEstate::all();
+        foreach($realEstates as $realEstate){
+            if($realEstate->user_id == $user_id){
+                $realEstate->user_id =null ;
+                $realEstate->save();
+            }
+        }
+        $user->delete();
+        
+        return redirect()->back();
+    }
 
     public function getviewSettingUser(){
         $user = Auth::user();

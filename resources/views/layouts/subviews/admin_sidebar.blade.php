@@ -4,7 +4,9 @@
     <div class="transition duration-150 ease-in-out rounded-md text-center">
 
         <li><a class="md:p-4 py-3 px-2 block rounded-md text-center hover:bg-gray-200" href="{{route('admin.realEstateList')}}">อสังหา</a></li>
+        @if(Auth::user()->role == 'admin')
         <li><a class="md:p-4 py-3 px-2 block rounded-md text-center hover:bg-gray-200" href="{{route('admin.staffList')}}">พนักงาน</a></li>
+        @endif
         <li><a class="md:p-4 py-3 px-2 block rounded-md text-center hover:bg-gray-200" href="{{route('admin.promoteList')}}">โปรโมต</a></li>
         </div>
     </ul>

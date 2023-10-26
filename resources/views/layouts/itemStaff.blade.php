@@ -1,4 +1,4 @@
-<div role="listitem" class="relative">
+<div role="listitem" class="relative animate-flip-up">
     <div class="rounded overflow-hidden shadow-md bg-white">
         <div class="absolute -mt-20 w-full flex justify-center">
             <div class="h-32 w-32">

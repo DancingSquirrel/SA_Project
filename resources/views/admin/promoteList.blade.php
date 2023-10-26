@@ -19,11 +19,21 @@
                         <div>
 
                             <form action="{{ route('admin.promoteList') }}" method="GET" class="dataTable-top flex flex-row justify-between m-5">
-
                                 <div class="flex justify-center p-3" id="bulk-actions">
+                                    @if(Auth::user()->role == 'staff')
                                     <label class="flex flex-wrap flex-row">
-                                        <select id="status" name="status" class="inline-block leading-5 relative  px-5 py-2 ltr:pl-3 ltr:pr-8 rtl:pr-3 rtl:pl-8 mx-1 rounded bg-gray-100 border border-gray-200 overflow-x-auto focus:outline-none focus:border-gray-300 focus:ring-0 select-caret appearance-none">
-                                            <option value="">Action</option>
+                                        <select id="input_id_user" name="input_id_user"
+                                            class="inline-block leading-5 relative  px-8 py-2 ltr:pl-3 ltr:pr-8 rtl:pr-3 rtl:pl-8 mx-1 rounded bg-gray-100 border border-gray-200 overflow-x-auto focus:outline-none focus:border-gray-300 focus:ring-0 select-caret appearance-none">
+                                            <option value="">All</option>
+                                            <option value="{{Auth::user()->id}}">My List</option>
+                                        </select>
+                                    </label>
+                                    @endif
+                                </div>
+                                <div class="flex justify-center p-3" id="bulk-actions">
+                                    <label class="flex flex-wrap flex-row ">
+                                        <select id="status" name="status" class="inline-block leading-5 relative px-8 py-2 ltr:pl-3 ltr:pr-8 rtl:pr-3 rtl:pl-8 mx-1 rounded bg-gray-100 border border-gray-200 overflow-x-auto focus:outline-none focus:border-gray-300 focus:ring-0 select-caret appearance-none">
+                                            <option value="">Select status</option>
                                             <option value="success">success</option>
                                             <option value="unsuccess">unsuccess</option>
                                             
@@ -82,9 +92,11 @@
                                                 <th class="text-center" data-sortable="">
                                                     <a href="#" class="dataTable-sorter mx-3">Status</a>
                                                 </th>
+                                                @if(Auth::user()->role == 'admin')
                                                 <th class="text-center" data-sortable="false">
                                                     <p class="text-center dataTable-sorter mx-5">Actions</p>
                                                 </th>
+                                                @endif
 
                                             </tr>
                                         </thead>
@@ -93,9 +105,9 @@
                                             <tr>
                                                 <td>
                                                     <a href="#">
-                                                        <div class="flex flex-wrap flex-row items-center m-3 text-xs">
+                                                        <div class="flex flex-wrap flex-row items-center m-3 text-xs ">
 
-                                                            <div class="leading-5 flex-1 ltr:ml-2 rtl:mr-2 mb-1">
+                                                            <div class="leading-5 flex-1 ltr:ml-2 rtl:mr-2 mb-1 text-center">
                                                                 {{ $realEstate->address}}
 
                                                             </div>
@@ -157,6 +169,7 @@
                                                     <span class="text-sm px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full w-full">success</span>
                                                     @endif
                                                 </td>
+                                                @if(Auth::user()->role == 'admin')
                                                 <td class="text-center">
                                                     
                                                     <a href="{{ route('admin.promoteList.edit', ['realEstate' => $realEstate]) }}" class="inline-block ltr:mr-2 rtl:ml-2 hover:text-green-500" title="Edit">
@@ -168,6 +181,7 @@
                                                         </svg>
                                                     </a>
                                                 </td>
+                                                @endif
                                             </tr>
                                             @endforeach
 
@@ -180,6 +194,7 @@
                                         <div class="flex items-center col-span-3">
                                             {{ $realEstates->appends([
                                                     'input_anything' => $input_anything,
+                                                    'input_id_user' => $input_id_user,
                                                 ])->links() }}
                                         </div>
 

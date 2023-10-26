@@ -35,7 +35,10 @@ class RealEstateController extends Controller
         $query = RealEstate::query();
         $input_status = $request->query('input_status');
         $input_anything = $request->query('input_anything');
-
+        $input_id_user = $request->query('input_id_user');
+        if ($input_id_user) {
+            $query = $query->where('user_id', $input_id_user);
+        }
         if ($input_status) {
             $query = $query->where('status', $input_status);
         }
@@ -46,10 +49,13 @@ class RealEstateController extends Controller
                 ->orWhere('tambon', 'LIKE', "%$input_anything%");
         }
         $realEstates = $query->paginate(15);
+        $users = User::all();
         return view('admin.realEstateList', [
+            'input_id_user' =>$input_id_user,
             'realEstates' => $realEstates,
             'input_status' => $input_status,
             'input_anything' => $input_anything,
+            'users' => $users,
         ]);
     }
     public function popAllPromoteList(Request $request)
@@ -59,6 +65,10 @@ class RealEstateController extends Controller
         $query = RealEstate::query();
         $status = $request->query('status');
         $input_anything = $request->query('input_anything');
+        $input_id_user = $request->query('input_id_user');
+        if ($input_id_user) {
+            $query = $query->where('user_id', $input_id_user);
+        }
         if ($input_anything) {
             $query = $query->where('address', 'LIKE', "%$input_anything%");
         }
@@ -77,6 +87,7 @@ class RealEstateController extends Controller
 
         return view('admin.promoteList', [
             'realEstates' => $realEstates,
+            'input_id_user' =>$input_id_user,
             'input_anything' => $input_anything,
         ]);
     }

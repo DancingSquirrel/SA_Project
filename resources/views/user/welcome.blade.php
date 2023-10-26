@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="h-96 flex items-center justify-center ">
+<div class="h-96 flex items-center justify-center animate-fade">
     <div class="w-full h-full shadow-2xl overflow-hidden relative bg-black">
         <video
             src="https://static.vecteezy.com/system/resources/previews/017/039/129/mp4/signing-home-sales-and-insurance-contracts-with-real-estate-agents-signing-contracts-to-know-the-terms-of-buying-and-selling-homes-and-real-estate-contract-signing-ideas-free-video.mp4"
@@ -16,9 +16,9 @@
 </div>
 
 <div class="flex flex-col justify-center p-10 bg-gray-200">
-    <h1 class="text-3xl text-center text-black tracking-wider font-extrabold m-10">
+    <h1 class="text-3xl text-center text-black tracking-wider font-extrabold m-10 animate-fade-down">
         รับฝากขายบ้าน คอนโด อสังหาริมทรัพย์ ทุกประเภท</h1>
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 animate-fade-down">
         <div></div>
         <div></div>
         <a href="https://www.facebook.com/iconhomeclub?locale=th_TH"
@@ -28,7 +28,7 @@
             <span class="relative group-hover:text-white text-center"><h5>ติดต่อ สอบถามได้ที่นี่</h5></span>
         </a>
     </div>
-    <div class="flex flex-col justify-center items-center">
+    <div class="flex flex-col justify-center items-center animate-fade-down">
         <img class="object-center object-scale-down h-48 w-96 "
             src="https://www.iconhome.co.th/media/content/IMG-1617602959076.png" alt="">
     </div>

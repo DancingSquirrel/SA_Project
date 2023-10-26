@@ -16,7 +16,7 @@
     @include('layouts.subviews.navbar')
     @endif
 
-    <main class="min-h-screen bg-gray-100">
+    <main class="min-h-screen bg-gray-100 animate-fade-down">
         @yield('content')
     </main>
     @include('layouts.subviews.footer')
