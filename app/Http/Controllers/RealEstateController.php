@@ -252,7 +252,6 @@ class RealEstateController extends Controller
             'staff_id' => 'required',
             'date_start' => 'required|date',
             'years_agreement' => 'required|integer',
-            'input_images' => 'required',
         ]);
 
 
@@ -315,7 +314,7 @@ class RealEstateController extends Controller
             $realEstate->status = $status;
             $realEstate->save();
         }
-        if ($images[0] != null) {
+        if ($images != null) {
             $accept = 1;
             foreach ($images as $image) {
                 $fileName = $realEstate->id . '-' . time() . $accept . '.png';

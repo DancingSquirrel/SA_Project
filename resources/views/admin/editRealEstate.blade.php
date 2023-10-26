@@ -217,7 +217,7 @@
                             <div class="flex flex-row ">
                                 <img src="{{asset($image->image_path)}}" class="'col-span-1'"  alt="" >
                                 <a href="{{route('admin.updateRealEstate.delete' , ['image_id' => $image->id] )}}" id="deleteImageButton" >
-                                @method('DELETE')
+                                
                                     <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 460.775 460.775" xml:space="preserve">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
