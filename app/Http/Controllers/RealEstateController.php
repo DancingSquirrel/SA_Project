@@ -289,7 +289,9 @@ class RealEstateController extends Controller
         $newprice = $realEstate->getPrice($realEstate);
         if ($price != $newprice) {
             $quotaprice = new QuotaPrice();
-            $quotaprice->count = $realEstate::get()->getCountPrice()->first() + 1;
+            $id = $realEstate->id;
+            $quota = QuotaPrice::orderBy('count', 'desc')->where('real_estate_id', $id)->firstOrFail();
+            $quotaprice->count = $quota->count + 1;
             $quotaprice->price = $price;
             $quotaprice->date_change = $date_change;
             $quotaprice->real_estate_id = $realEstate->id;
