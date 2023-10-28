@@ -122,12 +122,11 @@
                     <div class="col-span-6 sm:col-span-3">
                         <p class="text-4xl text-gray-900 font-poppin mt-3 mb-5">Status </p>
                     </div>
-                    @if($realEstate->user->name)
+                    @if($realEstate->user != null)
                     <div class="col-span-6 sm:col-span-3">
 
                         <input value="{{ $realEstate->user->name}}" id="staff_id" name="staff_id" class=" appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </div>
-
 
                     @else
                     <div class="col-span-6 sm:col-span-3">
